@@ -64,7 +64,7 @@
 
         .intro-section h1 {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            transition: font-size 1s ease, opacity 1s ease;
+            transition: font-size 0.1s ease, opacity 0.1s ease;
         }
 
         section {
@@ -267,8 +267,65 @@
                 border-radius: 5px; /* Rounded corners */
                 cursor: pointer; /* Add pointer cursor on hover */
             }
-            
         }
+        #main-nav {
+            display: block;
+        }
+
+        /* Hide mobile menu toggle button by default */
+        #mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Media query for small screens */
+        @media screen and (max-width: 768px) {
+            /* Hide regular navigation on small screens */
+            #main-nav {
+                display: none;
+            }
+
+            /* Show mobile menu toggle button */
+            #mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            #mobile-menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #333;
+                margin: 5px 0;
+            }
+
+            /* Show mobile menu when toggled */
+            #main-nav.show-mobile {
+                display: block;
+                position: absolute;
+                top: 70px; /* Adjust as needed */
+                left: 0;
+                width: 100%;
+                background-color: #f9f9f9;
+                padding: 10px;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            #main-nav.show-mobile a {
+                display: block;
+                padding: 10px;
+                text-align: center;
+                text-decoration: none;
+                color: #333;
+            }
+        }
+            
+        
         .calculator-tab {
             display: none; /* Hide tab content by default */
         }
@@ -284,12 +341,18 @@
         <h1>Track and Field</h1>
     </div>
 
-    <nav>
+    <nav id="main-nav">
         <a href="#history">History</a>
         <a href="#world-records">World Records</a>
         <a href="#multis-calculator">Multis Calculator</a>
         <a href="#top-world-times">Top World Times</a>
     </nav>
+
+    <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <section id="history">
         <h2>History of Track and Field</h2>
@@ -966,6 +1029,11 @@
             var points = Math.floor(A * Math.pow((performance - B), C));
 
             return points;
+        }
+
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
         }
         
     </script>
