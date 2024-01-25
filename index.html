@@ -307,21 +307,24 @@
             /* Show mobile menu when toggled */
             #main-nav.show-mobile {
                 display: block;
-                position: absolute;
-                top: 70px; /* Adjust as needed */
+                position: fixed;
+                top: 0; /* Adjust as needed */
                 left: 0;
-                width: 100%;
+                width: 50%;
+                height: 100%;
                 background-color: #f9f9f9;
-                padding: 10px;
+                padding-top: 60px; /* Adjust as needed */
                 box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000; /* Ensure it's above other content */
             }
 
             #main-nav.show-mobile a {
                 display: block;
-                padding: 10px;
-                text-align: center;
+                padding: 20px;
+                text-align: left;
                 text-decoration: none;
                 color: #333;
+                border-bottom: 1px solid #605e5e; /* Add a separator between links */
             }
         }
             
