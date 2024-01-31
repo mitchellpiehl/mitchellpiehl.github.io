@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track and Field Website</title>
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #7410df, #836fc7);
+            color: #efefef;
+            scroll-behavior: smooth;
+        }
+        ul {
+            color: #012010
+        }
+
+        header {
+            background: none;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            text-align: right;
+            padding: 1em;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 4em;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        nav {
+            background: linear-gradient(to right, #8b16df, #2c3e50);
+            padding: 1em;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1em;
+            margin: 0 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #451c66;
+        }
+
+        section {
+            padding: 2em;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 10px;
+
+            color: #121111;
+            background-color: #fff; /* White background */
+            padding: 20px; /* Add some padding for spacing */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+
+            /* Style for labels */
+            label {
+                display: block; /* Each label on its own line */
+                margin-bottom: 5px; /* Spacing between labels and inputs */
+                font-weight: bold; /* Make labels bold */
+            }
+
+            input {
+                width: 100%; /* Take up full width */
+                padding: 10px; /* Add padding for input spacing */
+                margin-bottom: 15px; /* Spacing between inputs */
+                border: 1px solid #ccc; /* Border for input */
+                border-radius: 5px; /* Rounded corners */
+                box-sizing: border-box; /* Include padding and border in width/height */
+            }
+            button {
+                background-color: #8234db; /* Blue background color */
+                color: #fff; /* White text color */
+                padding: 10px 15px; /* Padding for button */
+                border: none; /* No border */
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer; /* Add pointer cursor on hover */
+            }
+        }
+
+        h2 {
+            color: #9034db;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000406;
+        }
+
+        footer {
+            background: linear-gradient(to right, #7c10e1, #956fc7);
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .tab {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #9034db;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .tab:hover {
+            background-color: #461c66;
+        }
+
+        
+        #main-nav {
+            display: block;
+        }
+
+        /* Hide mobile menu toggle button by default */
+        #mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Media query for small screens */
+        @media screen and (max-width: 768px) {
+            /* Hide regular navigation on small screens */
+            #main-nav {
+                display: none;
+            }
+
+            /* Show mobile menu toggle button */
+            #mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            #mobile-menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: #333;
+                margin: 5px 0;
+            }
+
+            /* Show mobile menu when toggled */
+            #main-nav.show-mobile {
+                display: block;
+                position: fixed;
+                top: 0; /* Adjust as needed */
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background-color: #f9f9f9;
+                padding-top: 60px; /* Adjust as needed */
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                z-index: 1000; /* Ensure it's above other content */
+            }
+
+            #main-nav.show-mobile a {
+                display: block;
+                padding: 20px;
+                text-align: left;
+                text-decoration: none;
+                color: #f8f3f3;
+                border-bottom: 1px solid #605e5e; /* Add a separator between links */
+            }
+        }
+            
+        
+        .calculator-tab {
+            display: none; /* Hide tab content by default */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        
+    </header>
+
+
+    <nav id="main-nav">
+        <a href="index.html">Intro</a>
+        <a href="worldrecords.html">World Records</a>
+        <a href="multicalculator.html">Multis Calculator</a>
+        <a href="#top-world-times">Top World Times</a>
+    </nav>
+
+    <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <section id="multis-calculator">
+        <h2>Multis Calculator</h2>
+        <!-- Add content here -->
+        <div class="tabs">
+            <button onclick="openTab('mens-heptathlon')">Men's Heptathlon</button>
+            <button onclick="openTab('mens-decathlon')">Men's Decathlon</button>
+            <button onclick="openTab('womens-pentathlon')">Women's Pentathlon</button>
+            <button onclick="openTab('womens-heptathlon')">Women's Heptathlon</button>
+        </div>
+
+        <div id="mens-heptathlon" class="calculator-tab">
+            <h3>Men's Heptathlon</h3>
+            <!-- Add inputs for each event -->
+            <!-- Add labeled inputs for each event -->
+            <div>
+                <label for="mens-heptathlon-60m">60m:</label>
+                <input type="number" id="mens-heptathlon-60m" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-long-jump">Long Jump (cm):</label>
+                <input type="number" id="mens-heptathlon-long-jump" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-shot-put">Shot Put (m):</label>
+                <input type="number" id="mens-heptathlon-shot-put" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-high-jump">High Jump (cm):</label>
+                <input type="number" id="mens-heptathlon-high-jump" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-60m-hurdles">60m Hurdles:</label>
+                <input type="number" id="mens-heptathlon-60m-hurdles" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-pole-vault">Pole Vault (m):</label>
+                <input type="number" id="mens-heptathlon-pole-vault" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="mens-heptathlon-1000m">1000m:</label>
+                <input type="number" id="mens-heptathlon-1000m" placeholder="Enter time" />
+            </div>
+            <div>
+                <button onclick="calculateMensHeptathlon()">Calculate Final Score</button>
+            </div>
+            <div>
+                <p id="mens-heptathlon-result">Final Score: </p>
+            </div>
+    
+        </div>
+
+        <div id="mens-decathlon" class="calculator-tab">
+            <h3>Men's Decathlon</h3>
+            <div>
+                <label for="mens-decathlon-100m">100m:</label>
+                <input type="number" id="mens-decathlon-100m" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="mens-decathlon-long-jump">Long Jump (cm):</label>
+                <input type="number" id="mens-decathlon-long-jump" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-decathlon-shot-put">Shot Put (m):</label>
+                <input type="number" id="mens-decathlon-shot-put" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-decathlon-high-jump">High Jump (cm):</label>
+                <input type="number" id="mens-decathlon-high-jump" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="mens-decathlon-400m">400m:</label>
+                <input type="number" id="mens-decathlon-400m" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="mens-decathlon-110m-hurdles">110m Hurdles:</label>
+                <input type="number" id="mens-decathlon-110m-hurdles" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="mens-decathlon-discus-throw">Discus Throw (m):</label>
+                <input type="number" id="mens-decathlon-discus-throw" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-decathlon-pole-vault">Pole Vault (m):</label>
+                <input type="number" id="mens-decathlon-pole-vault" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="mens-decathlon-javelin-throw">Javelin Throw (m):</label>
+                <input type="number" id="mens-decathlon-javelin-throw" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="mens-decathlon-1500m">1500m:</label>
+                <input type="number" id="mens-decathlon-1500m" placeholder="Enter time" />
+            </div>
+        <div>
+            <!-- Final Score Calculator -->
+            <button onclick="calculateMensDecathlon()">Calculate Final Score</button>
+        </div>
+        <div>
+            <p id="mens-decathlon-result">Final Score: </p>
+
+        </div>
+        </div>
+
+        <div id="womens-heptathlon" class="calculator-tab">
+            <h3>Women's Heptathlon</h3>
+            <div>
+                <label for="womens-heptathlon-100m-hurdles">100m Hurdles:</label>
+                <input type="number" id="womens-heptathlon-100m-hurdles" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-high-jump">High Jump (cm):</label>
+                <input type="number" id="womens-heptathlon-high-jump" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-shot-put">Shot Put (m):</label>
+                <input type="number" id="womens-heptathlon-shot-put" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-200m">200m:</label>
+                <input type="number" id="womens-heptathlon-200m" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-long-jump">Long Jump (cm):</label>
+                <input type="number" id="womens-heptathlon-long-jump" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-javelin-throw">Javelin Throw (m):</label>
+                <input type="number" id="womens-heptathlon-javelin-throw" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="womens-heptathlon-800m">800m:</label>
+                <input type="number" id="womens-heptathlon-800m" placeholder="Enter time" />
+            </div>
+            <div>
+                <!-- Final Score Calculator -->
+                <button onclick="calculateWomensHeptathlon()">Calculate Final Score</button>
+            </div>
+            <div>
+                <p id="womens-heptathlon-result">Final Score: </p>
+            </div>
+        </div>
+        <div id="womens-pentathlon" class="calculator-tab">
+            <h3>Women's Pentathlon</h3>
+            <div>
+                <label for="womens-pentathlon-60m-hurdles">60m Hurdles:</label>
+                <input type="number" id="womens-pentathlon-60m-hurdles" placeholder="Enter time" />
+            </div>
+            <div>
+                <label for="womens-pentathlon-high-jump">High Jump (cm):</label>
+                <input type="number" id="womens-pentathlon-high-jump" placeholder="Enter height" />
+            </div>
+            <div>
+                <label for="womens-pentathlon-shot-put">Shot Put (m):</label>
+                <input type="number" id="womens-pentathlon-shot-put" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="womens-pentathlon-long-jump">Long Jump (cm):</label>
+                <input type="number" id="womens-pentathlon-long-jump" placeholder="Enter distance" />
+            </div>
+            <div>
+                <label for="womens-pentathlon-800m">800m:</label>
+                <input type="number" id="womens-pentathlon-800m" placeholder="Enter time" />
+            </div>
+            <div>
+                <!-- Final Score Calculator -->
+                <button onclick="calculateWomensPentathlon()">Calculate Final Score</button>
+            </div>
+            <div>
+                <p id="womens-pentathlon-result">Final Score: </p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <footer>
+        &copy; 2024 Track and Field Website
+    </footer>
+
+    <script>
+        window.onscroll = function() {
+            const header = document.querySelector('header');
+            const introSection = document.querySelector('.intro-section');
+            const h1Intro = document.querySelector('.intro-section h1');
+            
+            const scrollPosition = window.scrollY;
+            
+            header.style.opacity = 1 - scrollPosition / 500;
+            
+            introSection.style.opacity = 1 - scrollPosition / 500;
+            h1Intro.style.fontSize = 4 - scrollPosition / 500 + 'em';
+        };
+
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("calculator-tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+
+        function calculateMensDecathlon() {
+            // Get input values
+            var time100m = parseFloat(document.getElementById("mens-decathlon-100m").value) || 0;
+            var longJump = parseFloat(document.getElementById("mens-decathlon-long-jump").value) || 0;
+            var shotPut = parseFloat(document.getElementById("mens-decathlon-shot-put").value) || 0;
+            var highJump = parseFloat(document.getElementById("mens-decathlon-high-jump").value) || 0;
+            var time400m = parseFloat(document.getElementById("mens-decathlon-400m").value) || 0;
+            var time110mHurdles = parseFloat(document.getElementById("mens-decathlon-110m-hurdles").value) || 0;
+            var discusThrow = parseFloat(document.getElementById("mens-decathlon-discus-throw").value) || 0;
+            var poleVault = parseFloat(document.getElementById("mens-decathlon-pole-vault").value) || 0;
+            var javelinThrow = parseFloat(document.getElementById("mens-decathlon-javelin-throw").value) || 0;
+            var time1500m = parseFloat(document.getElementById("mens-decathlon-1500m").value) || 0;
+
+            
+            // Calculate the final score using the scoring logic
+            var points100m = calculateRunningEventPoints(time100m, 25.4347, 18, 1.81);
+            var points400m = calculateRunningEventPoints(time400m, 1.53775, 82, 1.81);
+            var points1500m = calculateRunningEventPoints(time1500m, 0.03768, 480, 1.85);
+            var points110mHurdles = calculateRunningEventPoints(time110mHurdles, 5.74352, 28.5, 1.92);
+            var pointsLongJump = calculateFieldEventPoints(longJump, 0.14354, 220, 1.4);
+            var pointsHighJump = calculateFieldEventPoints(highJump, 0.8465, 75, 1.42);
+            var pointsShotPut = calculateFieldEventPoints(shotPut, 51.39, 1.5, 1.05);
+            var pointsDiscusThrow = calculateFieldEventPoints(discusThrow, 12.91, 4, 1.1);
+            var pointsPoleVault = calculateFieldEventPoints(poleVault, 0.2797, 100, 1.35);
+            var pointsJavelinThrow = calculateFieldEventPoints(javelinThrow, 10.14, 7, 1.08);
+
+            var finalScore = points100m + pointsLongJump + pointsShotPut + pointsHighJump + points400m + points110mHurdles + pointsDiscusThrow + pointsPoleVault + pointsJavelinThrow + points1500m;
+
+            // Update the result element
+            document.getElementById("mens-decathlon-result").innerText = "Final Score: " + finalScore;
+        }
+
+        function calculateMensHeptathlon() {
+            // Get input values
+            var time60m = parseFloat(document.getElementById("mens-heptathlon-60m").value) || 0;
+            var longJump = parseFloat(document.getElementById("mens-heptathlon-long-jump").value) || 0;
+            var shotPut = parseFloat(document.getElementById("mens-heptathlon-shot-put").value) || 0;
+            var highJump = parseFloat(document.getElementById("mens-heptathlon-high-jump").value) || 0;
+            var time60mHurdles = parseFloat(document.getElementById("mens-heptathlon-60m-hurdles").value) || 0;
+            var poleVault = parseFloat(document.getElementById("mens-heptathlon-pole-vault").value) || 0;
+            var time1000m = parseFloat(document.getElementById("mens-heptathlon-1000m").value) || 0;
+            
+            // Calculate the final score using the scoring logic
+            var points60m = calculateRunningEventPoints(time60m, 58.015, 11.5, 1.81);
+            var points1000m = calculateRunningEventPoints(time1000m, 0.08713, 305.5, 1.85);
+            var points60mHurdles = calculateRunningEventPoints(time60mHurdles, 9.23076, 26.7, 1.835);
+            var pointsLongJump = calculateFieldEventPoints(longJump, 0.14354, 220, 1.4);
+            var pointsHighJump = calculateFieldEventPoints(highJump, 0.8465, 75, 1.42);
+            var pointsShotPut = calculateFieldEventPoints(shotPut, 51.39, 1.5, 1.05);
+            var pointsPoleVault = calculateFieldEventPoints(poleVault, 0.2797, 100, 1.35);
+
+
+            var finalScore = points60m + pointsLongJump + pointsShotPut + pointsHighJump + points60mHurdles +  pointsPoleVault + points1000m;
+
+            document.getElementById("mens-heptathlon-result").innerText = "Final Score: " + finalScore;
+        }
+
+        function calculateWomensHeptathlon() {
+            // Get input values
+            var time100mHurdles = parseFloat(document.getElementById("womens-heptathlon-100m-hurdles").value) || 0;
+            var longJump = parseFloat(document.getElementById("womens-heptathlon-long-jump").value) || 0;
+            var shotPut = parseFloat(document.getElementById("womens-heptathlon-shot-put").value) || 0;
+            var highJump = parseFloat(document.getElementById("womens-heptathlon-high-jump").value) || 0;
+            var time200m = parseFloat(document.getElementById("womens-heptathlon-200m").value) || 0;
+            var javelinThrow = parseFloat(document.getElementById("womens-heptathlon-javelin-throw").value) || 0;
+            var time800m = parseFloat(document.getElementById("womens-heptathlon-800m").value) || 0;
+            
+            // Calculate the final score using the scoring logic
+            var points100mHurdles = calculateRunningEventPoints(time100mHurdles, 9.23076, 26.7, 1.835);
+            var points800m = calculateRunningEventPoints(time800m, 0.11193, 254, 1.88);
+            var points200m = calculateRunningEventPoints(time200m, 4.99087, 42.5, 1.81);
+            var pointsLongJump = calculateFieldEventPoints(longJump, 0.188807, 210, 1.41);
+            var pointsHighJump = calculateFieldEventPoints(highJump, 1.84523, 75, 1.348);
+            var pointsShotPut = calculateFieldEventPoints(shotPut, 56.0211, 1.5, 1.05);
+            var pointsJavelinThrow = calculateFieldEventPoints(javelinThrow, 15.9803, 3.8, 1.04);
+
+
+            var finalScore = points200m + pointsLongJump + pointsShotPut + pointsHighJump + points100mHurdles +  pointsJavelinThrow + points800m;
+
+            document.getElementById("womens-heptathlon-result").innerText = "Final Score: " + finalScore;
+        }
+
+        function calculateWomensPentathlon() {
+            // Get input values
+            var time60mHurdles = parseFloat(document.getElementById("womens-pentathlon-60m-hurdles").value) || 0;
+            var longJump = parseFloat(document.getElementById("womens-pentathlon-long-jump").value) || 0;
+            var shotPut = parseFloat(document.getElementById("womens-pentathlon-shot-put").value) || 0;
+            var highJump = parseFloat(document.getElementById("womens-pentathlon-high-jump").value) || 0;
+            var time800m = parseFloat(document.getElementById("womens-pentathlon-800m").value) || 0;
+            
+            // Calculate the final score using the scoring logic
+            var points60mHurdles = calculateRunningEventPoints(time60mHurdles, 20.5173, 17, 1.81);
+            var points800m = calculateRunningEventPoints(time800m, 0.11193, 254, 1.88);
+            var pointsLongJump = calculateFieldEventPoints(longJump, 0.188807, 210, 1.41);
+            var pointsHighJump = calculateFieldEventPoints(highJump, 1.84523, 75, 1.348);
+            var pointsShotPut = calculateFieldEventPoints(shotPut, 56.0211, 1.5, 1.05);
+
+
+            var finalScore = pointsLongJump + pointsShotPut + pointsHighJump + points60mHurdles + points800m;
+
+            document.getElementById("womens-pentathlon-result").innerText = "Final Score: " + finalScore;
+        }
+
+        function calculateRunningEventPoints(time, A, B, C) {
+            time = Math.max(time, 0);
+            if(time === 0) {
+                return 0;
+            }
+            var points = Math.floor(A * Math.pow((B - time), C));
+
+            return points;
+        }
+
+
+        function calculateFieldEventPoints(performance, A, B, C) {
+            performance = Math.max(performance, 0);
+            if(performance === 0) {
+                return 0;
+            }
+            var points = Math.floor(A * Math.pow((performance - B), C));
+
+            return points;
+        }
+
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+        
+    </script>
+
+</body>
+</html>
