@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Performance</title>
+</head>
+<body>
+    <h1>Update Player Performance</h1>
+    <form action="{{ url_for('update_performance') }}" method="POST">
+        <label for="player_id">Player:</label>
+        <select id="player_id" name="player_id">
+            {% for player in players %}
+            <option value="{{ player.id }}">{{ player.name }} ({{ player.position }})</option>
+            {% endfor %}
+        </select><br>
+        <label for="week">Week:</label>
+        <input type="number" id="week" name="week" required><br>
+        <label for="points">Points:</label>
+        <input type="number" id="points" name="points" required><br>
+        <label for="team_id">Team:</label>
+        <select id="team_id" name="team_id">
+            {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Update Performance</button>
+    </form>
+</body>
+</html>

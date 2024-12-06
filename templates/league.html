@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ league.name }}</title>
+</head>
+<body>
+    <h1>{{ league.name }}</h1>
+    <h2>Teams</h2>
+    <ul>
+        {% for team in teams %}
+        <li>{{ team.name }} (Wins: {{ team.wins }}, Losses: {{ team.losses }}, Ties: {{ team.ties }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_team') }}">Add New Team</a><br>
+    <a href="{{ url_for('update_performance') }}">Update Player Performance</a>
+</body>
+</html>
