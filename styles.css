@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
+    font-size: 24px;
+}
+.description {
+    text-align: center;
+    margin: 20px;
+    font-size: 18px;
+}
+.timeline-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 80vh;
+    overflow-y: scroll;
+    padding: 20px;
+    position: relative;
+}
+.eras {
+    width: 200px;
+    padding-right: 30px;
+    position: relative;
+}
+.era {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-left: 5px solid black;
+    font-weight: bold;
+    position: absolute;
+    color: white;
+}
+.timeline {
+    position: relative;
+    width: 5px;
+    background: black;
+    min-height: 5000px;
+}
+.event {
+    position: absolute;
+    left: 20px;
+    width: 250px;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+.event:hover {
+    background: #ddd;
+    transform: scale(1.1);
+    z-index: 10;
+}
+.zoom-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.zoom-controls button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+.year-label {
+    position: absolute;
+    left: -50px;
+    font-size: 14px;
+    font-weight: bold;
+}
