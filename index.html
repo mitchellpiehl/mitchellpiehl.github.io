@@ -14,234 +14,30 @@
         <div class="timeline" id="timeline"></div>
     </div>
     <script>
-        const events = [
-            { 
-                year: 1943,
-                short: "MCP neuron proposed.", 
-                long: "McCulloch and Pitts published one of the first works alluding to Artificial Intelligence, the NCP neuron.", 
-                description: "McCulloch and Pitts published one of the first works alluding to Artificial Intelligence. The MCP neuron is activated when a processed input of boolean inputs passes a specific threshold. ",
-                image: "perceptron.png",
-                link: "https://google.com",
-                priority: 1 
-            },
-            { 
-                year: 1948, 
-                short: "Shannon's n-gram model.", 
-                long: "Shannon uses the Markov chain framework to create an n-gram large language model.", 
-                description: "",
-                description: "",
-                image: "",
-                link: "",
-                priority: 2 
-            },
-            { 
-                year: 1950, short: "Turing Test proposed.", 
-                long: "Alan Turing proposed the Turing Test in his article Computing Machinery and Intelligence.", 
-                description: "Alan Turing proposed the Turing Test in his article Computing Machinery and Intelligence. The Turing test...",
-                image: "",
-                link: "",
-                priority: 3 },
-            { 
-                year: 1956, 
-                short: "McCarthy coins 'AI'.", 
-                long: "John McCarthy coined the term 'Artificial Intelligence' during the 1956 Dartmouth conference.", 
-                description: "John McCarthy coined the term 'Artificial Intelligence' during the 1956 Dartmouth conference. During the conference...",
-                image: "dartmouth.png",
-                link: "https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth",
-                priority: 4 },
-            { 
-                year: 1960, 
-                short: "The General Problem Solver was created", 
-                long: "Herbert Simon, John Clark Shaw, and Allen Newell's General Problem Solver was created mimicking human problem solving.", 
-                description: "Herbert Simon, John Clark Shaw, and Allen Newell's General Problem Solver was created mimicking human problem solving.",
-                image: "",
-                link: "",
-                priority: 5 },
-            { 
-                year: 1963, 
-                short: "Introduction of the Support Vector Machine", 
-                long: "Vapnik and Chervonenkis introduced the support vector machine, which became popular in the 1990s due to the low computational power needed compared to neural networks.", 
-                description: "Vapnik and Chervonenkis introduced the support vector machine, which became popular in the 1990s due to the low computational power needed compared to neural networks.",
-                image: "",
-                link: "",
-                priority: 5 },
-            { 
-                year: 1966, 
-                short: "Eliza was introduced", 
-                long: "Joseph Weizenbaum's Eliza, a natural language processing program that attempted to imitate conversations with a human was created.", 
-                description: "Joseph Weizenbaum's Eliza, a natural language processing program that attempted to imitate conversations with a human was created.",
-                image: "",
-                link: "https://psych.fullerton.edu/mbirnbaum/psych101/eliza.htm",
-                priority: 6 },
-            { 
-                year: 1971, 
-                short: "Introduction of SHRDLU", 
-                long: "The SHRDLU system, one of the most acclaimed systems of the golden age, was created, demonstrating novice problem solving and natural language understanding.", 
-                description: "The SHRDLU system, one of the most acclaimed systems of the golden age, was created, demonstrating novice problem solving and natural language understanding.",
-                image: "",
-                link: "https://hci.stanford.edu/winograd/shrdlu/",
-                priority: 1 },
-            { 
-                year: 1972, 
-                short: "Stanfords Lab created SHAKEY", 
-                long: "The Stanford Research Institute created SHAKEY, the first mobile robot that could be given tasks in the real world. ", 
-                description: "The Stanford Research Institute created SHAKEY, the first mobile robot that could be given tasks in the real world.",
-                image: "",
-                link: "https://www.sri.com/hoi/shakey-the-robot/",
-                priority: 2 },
-            { 
-                year: 1974, 
-                short: "First AI Winter.", 
-                long: "First AI Winter due to over-expectations and funding cuts.", 
-                description: "Caused by over expectations of the abilities of AI. Started by a key funding body for scientific research in the UK asked Sir James Lighthill to evaluate the state of and prospects for AI which was “fiercely dismissive of mainstream AI” which immediately led to severe funding cuts to AI research across the UK. Funding cuts to the US followed shortly after when DARPA was becoming frustrated with the failure of AI to deliver on its many promises.",
-                image: "",
-                link: "",
-                priority: 3 },
-            { 
-                year: 1980, 
-                short: "Chinese Room argument was proposed", 
-                long: "John Searle proposes the Chinese room argument", 
-                description: "John Searle proposes the Chinese room argument where a man sits in a room and provides outputs to given messages passed under the door by following the book he was given. This man does not have any Chinese understanding but could still pass the Turing test.",
-                image: "",
-                link: "https://plato.stanford.edu/entries/chinese-room/",
-                priority: 4 },
-            { 
-                year: 1986, 
-                short: "Backpropagation breakthrough.", 
-                long: "Rumelhart introduced backpropagation in neural networks.", 
-                description: "Rumelhart introduced the concept of back-propagation in multilayer neural networks, revolutionizing the learning capabilities of neural networks. This paper has now over 40,000 citations.",
-                image: "",
-                link: "https://bpb-us-e2.wpmucdn.com/labs.utdallas.edu/dist/e/71/files/2020/12/BackpropagationTheBasicTheory.pdf",
-                priority: 1 },
-            { 
-                year: 1988, 
-                short: "LeNet was created", 
-                long: "Yann LeCun built the first CNN called LeNet, this used convolutions to find more distinct patterns. Very useful for stuff like handwriting detection", 
-                description: "Yann LeCun built the first CNN called LeNet, this used convolutions to find more distinct patterns. Very useful for stuff like handwriting detection",
-                image: "",
-                link: "https://www.kaggle.com/code/blurredmachine/lenet-architecture-a-complete-guide",
-                priority: 2 },
-            { 
-                year: 1990, 
-                short: "Introduction of the Loebner Prize", 
-                long: "Hugh Loebner started the Loebner Prize, a competition that pays the one to pass the Turing Test $100,000. ", 
-                description: "Hugh Loebner started the Loebner Prize, a competition that pays the one to pass the Turing Test $100,000.",
-                image: "",
-                link: "https://www.ocf.berkeley.edu/~arihuang/academic/research/loebner.html",
-                priority: 3 },
-            { 
-                year: 1997, 
-                short: "Deep Blue beats chess champion.", 
-                long: "IBM's Deep Blue defeated the world chess champion Garry Kasparov.", 
-                description: "IBM's Deep Blue defeated the world chess champion Garry Kasparov.",
-                image: "",
-                link: "https://www.ibm.com/history/deep-blue",
-                priority: 4 },
-            { 
-                year: 1997, 
-                short: "Introduction of Long-Short Term Memory (LSTM)", 
-                long: "Sepp Hochreiter and Jurgen Schmidhuber introduced Long-Short-Term-Memory (LSTM), aiming to combat the diminishing gradient problem in traditional RNNs.", 
-                description: "Sepp Hochreiter and Jurgen Schmidhuber introduced Long-Short-Term-Memory (LSTM), aiming to combat the diminishing gradient problem in traditional RNNs.",
-                image: "",
-                link: "",
-                priority: 5 },
-            { 
-                year: 1997, 
-                short: "EQP solves the Robbins conjecture", 
-                long: "An automatic theorem prover called EQP or Equational Prover successfully proved the Robbins conjecture to be true, a problem that was famously unsolved for over 50 years. ", 
-                description: "An automatic theorem prover called EQP or Equational Prover successfully proved the Robbins conjecture to be true, a problem that was famously unsolved for over 50 years. ",
-                image: "",
-                link: "",
-                priority: 6 },
-            { 
-                year: 2007, 
-                short: "The 2007 Grand Challenge", 
-                long: "A Carnegie Mellon University research group won the 2007 Urban Challenge, showing driverless cars are indeed possible, prompting many organizations to invest lots of money in driverless car research.", 
-                description: "A Carnegie Mellon University research group won the 2007 Urban Challenge, showing driverless cars are indeed possible, prompting many organizations to invest lots of money in driverless car research.",
-                image: "",
-                link: "",
-                priority: 4 },
-            { 
-                year: 2010, 
-                short: "Siri was launched", 
-                long: "An app called Siri was launched by Apple, a software agent developed from similar ideas as SHAKEY", 
-                description: "An app called Siri was launched by Apple, a software agent developed from similar ideas as SHAKEY",
-                image: "",
-                link: "https://www.britannica.com/technology/Siri",
-                priority: 5 },
-            { 
-                year: 2011, 
-                short: "Watson Wins Jeopardy", 
-                long: "IBMs AI system called Watson outperformed the best in the world Jeopardy.", 
-                description: "IBMs AI system called Watson outperformed the best in the world Jeopardy using a natural language processing algorithm to query 200 million pages of content while replying in appropriate style English.",
-                image: "",
-                link: "https://www.britannica.com/technology/Siri",
-                priority: 5 },
-            { 
-                year: 2012, 
-                short: "AlexNet wins ImageNet.", 
-                long: "Krizhevsky presented AlexNet, using GPUs and CNNs to win the ImageNet challenge.", 
-                description: "Krizhevsky presented AlexNet, using GPUs and CNNs to win the ImageNet challenge.",
-                image: "",
-                link: "",
-                priority: 6 },
-            { 
-                year: 2013, 
-                short: "Google releases Word2Vec", 
-                long: "Google releases Word2Vec", 
-                description: "Google releases Word2Vec",
-                image: "",
-                link: "https://arxiv.org/pdf/1301.3781",
-                priority: 1 },
-            { 
-                year: 2014, 
-                short: "Attention was introduced", 
-                long: "Bahdanau, Cho, and Bengio introduced the idea of attention in neural networks to address the limitations of RNNs", 
-                description: "Bahdanau, Cho, and Bengio introduced the idea of attention in neural networks to address the limitations of RNNs",
-                image: "",
-                link: "",
-                priority: 7 },
-            { 
-                year: 2015, 
-                short: "AlphaGo wins", 
-                long: "Google's AlphaGo (Developed by DeepMind) beat the best Go player in the world using artificial neural networks", 
-                description: "Google's AlphaGo (Developed by DeepMind) beat the best Go player in the world using artificial neural networks",
-                image: "",
-                link: "",
-                priority: 2 },
-            { 
-                year: 2015, 
-                short: "Telsa releases AutoPilot", 
-                long: "Tesla released AutoPilot mode for its Tesla model S, the first ever partial automation driving vehicle.", 
-                description: "Tesla released AutoPilot mode for its Tesla model S, the first ever partial automation driving vehicle.",
-                image: "",
-                link: "",
-                priority: 3 },
-            { 
-                year: 2017, 
-                short: "Google creates the Transformer", 
-                long: "Google released the paper “Attention is all you need” introducing the Transformer, the most powerful neural network used in NLP.", 
-                description: "Google released the paper “Attention is all you need” introducing the Transformer, the most powerful neural network used in NLP.",
-                image: "",
-                link: "",
-                priority: 1 },
-                { 
-            year: 2018, 
-                short: "Deepmind introduces AlphaFold", 
-                long: "DeepMind researchers announced AlphaFold, and how good it is predicting the shape certain molecules will take. ", 
-                description: "DeepMind researchers announced AlphaFold, and how good it is predicting the shape certain molecules will take. ",
-                image: "",
-                link: "",
-                priority: 8 },
-            { 
-                year: 2022, 
-                short: "ChatGPT released.", 
-                long: "ChatGPT, a conversational AI chatbot, was released using a transformer-based large language model.", 
-                description: "ChatGPT, a conversational AI chatbot, was released using a transformer-based large language model.",
-                image: "",
-                link: "",
-                priority: 1 }
-        ];
+        let events = []; // This will be populated dynamically
+
+        const SHEET_URL = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec"; // Replace this with your actual script URL
+
+        async function fetchEvents() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const data = await response.json();
+
+                events = data.map(event => ({
+                    year: Number(event.Year),
+                    short: event.Short,
+                    long: event.Long,
+                    description: event.Description,
+                    image: event.Image || "",
+                    link: event.Link || "",
+                    priority: Number(event.Priority),
+                }));
+
+                renderTimeline();
+            } catch (error) {
+                console.error("Error fetching events:", error);
+            }
+        }
         
         const eras = [
             { name: "Golden Age", start: 1956, end: 1974, color: "#FFD700" },
@@ -395,7 +191,7 @@
         });
         document.body.appendChild(zoomSlider);
 
-        renderTimeline();
+        fetchEvents();
     </script>
 </body>
 </html>
