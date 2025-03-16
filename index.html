@@ -7,14 +7,31 @@
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>The History of Artificial Intelligence</header>
+    <header>
+        The History of Artificial Intelligence
+        <nav>
+            <ul>
+                <li><a href="index.html">Timeline</a></li>
+                <li><a href="people.html">People</a></li>
+                <li><a href="papers.html">Papers</a></li>
+                <li><a href="resources.html">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
     <div class="description">Explore the key milestones in the history of artificial intelligence. Scroll through the timeline and zoom in for more details.</div>
+    
+    <select id="categoryFilter">
+        <option value="all">All Events</option>
+        <option value="category1">Category 1</option>
+        <option value="category2">Category 2</option>
+    </select>
+
     <div class="timeline-container">
         <div class="eras" id="eras"></div>
         <div class="timeline" id="timeline"></div>
     </div>
     <script>
-        let events = []; // This will be populated dynamically
+        let events = []; 
 
         const SHEET_URL = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec"; // Replace this with your actual script URL
 
@@ -22,7 +39,6 @@
             try {
                 const response = await fetch(SHEET_URL);
                 const data = await response.json();
-
                 events = data.map(event => ({
                     year: Number(event.Year),
                     short: event.Short,
@@ -31,6 +47,8 @@
                     image: event.Image || "",
                     link: event.Link || "",
                     priority: Number(event.Priority),
+                    category1: Boolean(event.category1),
+                    category2: Boolean(event.category2),
                 }));
 
                 renderTimeline();
@@ -94,10 +112,21 @@
             }
         });
 
+        document.getElementById('categoryFilter').addEventListener('change', renderTimeline);
+
         function renderTimeline() {
+            const selectedCategory = document.getElementById('categoryFilter').value;
+            const timeline = document.getElementById('timeline');
+            const eraContainer = document.getElementById('eras');
             timeline.innerHTML = '';
             eraContainer.innerHTML = '';
-            
+
+            let filteredEvents = events.filter(event => {
+                if (selectedCategory === 'category1') return event.category1;
+                if (selectedCategory === 'category2') return event.category2;
+                return true;
+            });
+
             eras.forEach(era => {
                 const eraElement = document.createElement('div');
                 eraElement.classList.add('era');
@@ -109,7 +138,7 @@
                 eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
                 eraContainer.appendChild(eraElement);
             });
-            
+
             for (let year = 1940; year <= 2025; year += 5) {
                 const yearLabel = document.createElement('div');
                 yearLabel.classList.add('year-label');
@@ -117,11 +146,11 @@
                 yearLabel.innerText = year;
                 timeline.appendChild(yearLabel);
             }
-            
+
             let occupiedPositions = [];
-            events.sort((a, b) => b.priority - a.priority);
+            filteredEvents.sort((a, b) => b.priority - a.priority);
             
-            events.forEach(event => {
+            filteredEvents.forEach(event => {
                 const eventElement = document.createElement('div');
                 eventElement.classList.add('event');
                 eventElement.style.top = `${(event.year - 1940) * 10 * zoomLevel}px`;
@@ -195,4 +224,3 @@
     </script>
 </body>
 </html>
-
