@@ -1,226 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI History Timeline</title>
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <header>
-        The History of Artificial Intelligence
-        <nav>
-            <ul>
-                <li><a href="index.html">Timeline</a></li>
-                <li><a href="people.html">People</a></li>
-                <li><a href="papers.html">Papers</a></li>
-                <li><a href="resources.html">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="description">Explore the key milestones in the history of artificial intelligence. Scroll through the timeline and zoom in for more details.</div>
-    
-    <select id="categoryFilter">
-        <option value="all">All Events</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
-    </select>
-
-    <div class="timeline-container">
-        <div class="eras" id="eras"></div>
-        <div class="timeline" id="timeline"></div>
+    <head>
+        <title>AI History - Home</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="portfolio.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+        </div>
+        <div id="header2">
+            <div>
+                <nav>
+                    <ul id="nav">
+                        <li><a href="index.html" class="current">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="papers.html">Papers</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="links.html">Interactive Links</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    <div class="home-container">
+            <h2>Welcome!</h2>
+            <p>
+                Hello and welcome to the site on the history of AI! This website will contain all 
+                you need to know about important and significant events, people, and papers published throughout
+                the history of Artificial Intelligence. 
+            </p>
+            <p>
+                Explore the <a href="index.html">timeline</a> to view an interactive display on all the events 
+                with pictures, details, and links. Go to the <a href="people.html">people</a> tab to learn all about the significant 
+                figures that have made artificial intelligence what it is today. View the <a href="papers.html">papers</a> section to 
+                learn everything you need to know about the most influential papers that have revolutionized the industry. The <a href="resources.html">resources</a> tab 
+                will provide the literature where most of this content was gathered, and will include any recommended readings to learn more about the 
+                topic of the history of artificial intelligence. Finally, the <a href="links.html" class="current">interactive links</a> page will 
+                provide you with a bunch of valuable and fun webpages for you to further explore these historical developments and gather an
+                appreciation of everything that goes into AI. 
+            </p>
+            <p>
+                Enjoy exploring!
+            </p>
     </div>
-    <script>
-        let events = []; 
-
-        const SHEET_URL = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec"; // Replace this with your actual script URL
-
-        async function fetchEvents() {
-            try {
-                const response = await fetch(SHEET_URL);
-                const data = await response.json();
-                events = data.map(event => ({
-                    year: Number(event.Year),
-                    short: event.Short,
-                    long: event.Long,
-                    description: event.Description,
-                    image: event.Image || "",
-                    link: event.Link || "",
-                    priority: Number(event.Priority),
-                    category1: Boolean(event.category1),
-                    category2: Boolean(event.category2),
-                }));
-
-                renderTimeline();
-            } catch (error) {
-                console.error("Error fetching events:", error);
-            }
-        }
-        
-        const eras = [
-            { name: "Golden Age", start: 1956, end: 1974, color: "#FFD700" },
-            { name: "First AI Winter", start: 1974, end: 1980, color: "#ADD8E6" },
-            { name: "Expert Systems Era", start: 1980, end: 1990, color: "#FFA500" },
-            { name: "Second AI Winter", start: 1990, end: 2000, color: "#00008B" },
-            { name: "Deep Learning Boom", start: 2000, end: 2025, color: "#32CD32" }
-        ];
-        
-        const timeline = document.getElementById('timeline');
-        const eraContainer = document.getElementById('eras');
-
-
-        let zoomLevel = 1;
-        let zoomTarget = 1;
-        let zoomStep = 0.1;
-        const minZoom = 1;
-        const maxZoom = 4;
-
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.style.position = 'fixed';
-        modal.style.left = '10px';
-        modal.style.top = '50%';
-        modal.style.transform = 'translateY(-50%)';
-        modal.style.width = '300px';
-        modal.style.background = 'white';
-        modal.style.padding = '10px';
-        modal.style.boxShadow = '2px 2px 10px rgba(0, 0, 0, 0.2)';
-        modal.style.borderRadius = '10px';
-        modal.style.border = '1px solid #ccc';
-        modal.style.display = 'none';
-        modal.style.zIndex = '1000';
-        document.body.appendChild(modal);
-
-        function showModal(event) {
-            modal.innerHTML = `<h3>${event.year}</h3><p>${event.description}</p>`;
-            if (event.image) {
-                modal.innerHTML += `<img src="${event.image}" style="width:100%">`;
-            }
-            if (event.link) {
-                modal.innerHTML += `<p><a href="${event.link}" target="_blank">More Info</a></p>`;
-            }
-            modal.style.display = 'block';
-        }
-
-        function hideModal() {
-            modal.style.display = 'none';
-        }
-
-        document.addEventListener('click', (e) => {
-            if (!modal.contains(e.target) && !e.target.classList.contains('event')) {
-                hideModal();
-            }
-        });
-
-        document.getElementById('categoryFilter').addEventListener('change', renderTimeline);
-
-        function renderTimeline() {
-            const selectedCategory = document.getElementById('categoryFilter').value;
-            const timeline = document.getElementById('timeline');
-            const eraContainer = document.getElementById('eras');
-            timeline.innerHTML = '';
-            eraContainer.innerHTML = '';
-
-            let filteredEvents = events.filter(event => {
-                if (selectedCategory === 'category1') return event.category1;
-                if (selectedCategory === 'category2') return event.category2;
-                return true;
-            });
-
-            eras.forEach(era => {
-                const eraElement = document.createElement('div');
-                eraElement.classList.add('era');
-                eraElement.style.top = `${(era.start - 1940) * 10 * zoomLevel}px`;
-                eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
-                eraElement.style.backgroundColor = era.color;
-                eraElement.style.width = '90%';
-                eraElement.style.position = 'absolute';
-                eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
-                eraContainer.appendChild(eraElement);
-            });
-
-            for (let year = 1940; year <= 2025; year += 5) {
-                const yearLabel = document.createElement('div');
-                yearLabel.classList.add('year-label');
-                yearLabel.style.top = `${(year - 1940) * 10 * zoomLevel}px`;
-                yearLabel.innerText = year;
-                timeline.appendChild(yearLabel);
-            }
-
-            let occupiedPositions = [];
-            filteredEvents.sort((a, b) => b.priority - a.priority);
-            
-            filteredEvents.forEach(event => {
-                const eventElement = document.createElement('div');
-                eventElement.classList.add('event');
-                eventElement.style.top = `${(event.year - 1940) * 10 * zoomLevel}px`;
-                
-                let leftOffset = 20;
-                let eventTop = (event.year - 1940) * 10 * zoomLevel;
-                let maxOffset = 300;
-                let spacing = 40;
-                
-                while (occupiedPositions.some(pos => Math.abs(pos.top - eventTop) < spacing && pos.left === leftOffset) && leftOffset < maxOffset) {
-                    leftOffset += 100;
-                }
-                
-                if (leftOffset < maxOffset || zoomLevel > 2) {
-                    occupiedPositions.push({ top: eventTop, left: leftOffset });
-                    eventElement.style.left = `${leftOffset}px`;
-                    eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 2 ? event.long : event.short}`;
-                    
-                    eventElement.addEventListener('mouseover', () => {
-                        eventElement.innerHTML = `<strong>${event.year}</strong><br>${event.long}`;
-                    });
-                    
-                    eventElement.addEventListener('mouseout', () => {
-                        eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 2 ? event.long : event.short}`;
-                    });
-                    
-                    eventElement.addEventListener('click', () => {
-                        showModal(event);
-                    });
-                    
-                    timeline.appendChild(eventElement);
-                }
-            });
-        }
-
-        function animateZoom() {
-            if (Math.abs(zoomLevel - zoomTarget) > 0.01) {
-                zoomLevel += (zoomTarget - zoomLevel) * 0.2;
-                renderTimeline();
-                requestAnimationFrame(animateZoom);
-            }
-        }
-
-        function zoomIn() { 
-            zoomTarget = Math.min(zoomTarget * 1.2, maxZoom);
-            animateZoom();
-        }
-
-        function zoomOut() { 
-            zoomTarget = Math.max(zoomTarget / 1.2, minZoom);
-            animateZoom();
-        }
-
-        const zoomSlider = document.createElement('input');
-        zoomSlider.type = 'range';
-        zoomSlider.min = minZoom;
-        zoomSlider.max = maxZoom;
-        zoomSlider.step = zoomStep;
-        zoomSlider.value = zoomLevel;
-        zoomSlider.style.position = 'fixed';
-        zoomSlider.style.bottom = '20px';
-        zoomSlider.style.left = '50%';
-        zoomSlider.style.transform = 'translateX(-50%)';
-        zoomSlider.addEventListener('input', (e) => {
-            zoomTarget = parseFloat(e.target.value);
-            animateZoom();
-        });
-        document.body.appendChild(zoomSlider);
-
-        fetchEvents();
-    </script>
 </body>
 </html>
