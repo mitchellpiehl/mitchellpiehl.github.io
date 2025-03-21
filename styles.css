@@ -1,3 +1,10 @@
+@font-face {
+    font-family: StThomas;
+    src: url(images/akzidenz-grotesk-bold.ttf);
+}
+.StThomas {
+    font-family: StThomas;
+}
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
@@ -6,21 +13,50 @@ body {
     background: linear-gradient(120deg, #f4f4f4, #e6eaf1);
     color: #333;
 }
+h1 {
+    margin: 0;
+}
 
 /* Header */
-header {
-    text-align: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #4b6cb7, #182848);
+#header2{
+    padding-bottom: 10px;
+    background: #510D77;
     color: white;
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 1.7vw;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     margin-bottom: 0;
     margin-top: 0;
-
+    text-align: center;
+    font-family:"StThomas", Arial, Helvetica, sans-serif;
+}
+#header{
+    padding: 8px;
+    padding-bottom: 0;
+    background: #510D77;
+    color: white;
+    font-size: 1.5vw;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: right;
+    display: flex;
+    font-family:"StThomas", Arial, Helvetica, sans-serif;
+}
+.hcol1 {
+    order:1;
+    width: 20%;
+    text-align: left;
+}
+.img {
+    width: 100%;
+}
+.hcol2 {
+    order: 2;
+    width: 80%;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 /* Navigation */
 nav {
@@ -55,7 +91,7 @@ nav ul li a {
     margin-top: 0;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, #nav li a.current {
     background: rgba(255, 255, 255, 0.2);
     margin-bottom: 0;
     margin-top: 0;
@@ -81,13 +117,26 @@ nav ul li a:hover {
     scroll-behavior: smooth;
 }
 
+.people-container, .paper-container, .resource-container, .link-container, .home-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+}
+.paper, .resource, .person, .link {
+    border: 2px solid #ffffff;
+    border-color: #111;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    margin-bottom: 2em;
+    
+}
 /* Eras */
 .eras {
     width: 250px;
     padding-right: 30px;
     position: relative;
 }
-
 .era {
     padding: 10px;
     border-left: 5px solid black;
@@ -98,7 +147,6 @@ nav ul li a:hover {
     background: rgba(50, 115, 220, 0.8);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
-
 /* Timeline */
 .timeline {
     position: relative;
@@ -108,7 +156,6 @@ nav ul li a:hover {
     border-radius: 3px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
-
 /* Events */
 .event {
     position: absolute;
@@ -122,14 +169,12 @@ nav ul li a:hover {
     transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
     border-left: 5px solid #4b6cb7;
 }
-
 .event:hover {
     background: #f8f9fc;
     transform: scale(1.05);
     z-index: 10;
     border-left: 5px solid #ff7f50;
 }
-
 /* Zoom Controls */
 .zoom-controls {
     position: fixed;
@@ -143,23 +188,6 @@ nav ul li a:hover {
     border-radius: 50px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
-
-.zoom-controls button {
-    background: #4b6cb7;
-    border: none;
-    color: white;
-    padding: 12px 18px;
-    margin: 5px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.zoom-controls button:hover {
-    background: #ff7f50;
-}
-
 /* Year Labels */
 .year-label {
     position: absolute;
