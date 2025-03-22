@@ -16,7 +16,7 @@
         </div>
         <div id="header2">
             <div>
-                <nav>
+                <nav id="main-nav">
                     <ul id="nav">
                         <li><a href="index.html" class="current">Home</a></li>
                         <li><a href="timeline.html">Timeline</a></li>
@@ -26,8 +26,15 @@
                         <li><a href="links.html">Interactive Links</a></li>
                     </ul>
                 </nav>
+                
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
+
     <div class="home-container">
             <h2>Welcome!</h2>
             <p>
@@ -36,7 +43,7 @@
                 the history of Artificial Intelligence. 
             </p>
             <p>
-                Explore the <a href="index.html">timeline</a> to view an interactive display on all the events 
+                Explore the <a href="timeline.html">timeline</a> to view an interactive display on all the events 
                 with pictures, details, and links. Go to the <a href="people.html">people</a> tab to learn all about the significant 
                 figures that have made artificial intelligence what it is today. View the <a href="papers.html">papers</a> section to 
                 learn everything you need to know about the most influential papers that have revolutionized the industry. The <a href="resources.html">resources</a> tab 
@@ -49,5 +56,11 @@
                 Enjoy exploring!
             </p>
     </div>
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+    </script>
 </body>
 </html>

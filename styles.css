@@ -65,7 +65,7 @@ nav {
     margin-bottom: 0;
 }
 
-nav ul {
+nav ul #main-nav {
     list-style: none;
     padding: 0;
     display: flex;
@@ -74,7 +74,7 @@ nav ul {
     margin-top: 4px;
 }
 
-nav ul li {
+nav ul li{
     display: inline;
     margin-bottom: 0;
     
@@ -224,4 +224,58 @@ nav ul li a:hover, #nav li a.current {
     outline: none;
     border-color: #182848;
     box-shadow: 2px 2px 10px rgba(24, 40, 72, 0.5);
+}
+
+#mobile-menu-toggle {
+    display: none;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 768px) {
+    /* Hide regular navigation on small screens */
+    #main-nav {
+        display: none;
+    }
+
+    /* Show mobile menu toggle button */
+    #mobile-menu-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1001;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    #mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #757373;
+        margin: 5px 0;
+    }
+
+    /* Show mobile menu when toggled */
+    #main-nav.show-mobile {
+        display: block;
+        position: fixed;
+        top: 0; /* Adjust as needed */
+        left: 0;
+        width: 30%;
+        height: 100%;
+        background-color: #921abd;
+        padding-top: 50px; /* Adjust as needed */
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    #main-nav.show-mobile a {
+        display: block;
+        padding: 20px;
+        text-align: left;
+        text-decoration: none;
+        color: #f8f3f3;
+        border-bottom: 1px solid #605e5e; /* Add a separator between links */
+    }
 }

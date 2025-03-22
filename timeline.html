@@ -16,7 +16,7 @@
     </div>
     <div id="header2">
         <div>
-            <nav>
+            <nav id="main-nav">
                 <ul id="nav">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="timeline.html" class="current">Timeline</a></li>
@@ -26,6 +26,11 @@
                     <li><a href="links.html">Interactive Links</a></li>
                 </ul>
             </nav>
+            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
     <div class="description">Explore the key milestones in the history of artificial intelligence. Scroll through the timeline and zoom in for more details.</div>
@@ -231,6 +236,11 @@
         document.body.appendChild(zoomSlider);
 
         fetchEvents();
+        
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
     </script>
 </body>
 </html>
