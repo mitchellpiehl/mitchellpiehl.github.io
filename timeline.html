@@ -172,11 +172,11 @@
                 
                 let leftOffset = 20;
                 let eventTop = (event.year - 1940) * 10 * zoomLevel;
-                let maxOffset = 300;
+                let maxOffset = 400;
                 let spacing = 40;
                 
                 while (occupiedPositions.some(pos => Math.abs(pos.top - eventTop) < spacing && pos.left === leftOffset) && leftOffset < maxOffset) {
-                    leftOffset += 100;
+                    leftOffset += 300;
                 }
                 
                 if (leftOffset < maxOffset || zoomLevel > 2) {
