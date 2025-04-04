@@ -37,8 +37,15 @@
     
     <select id="categoryFilter">
         <option value="all">All Events</option>
-        <option value="category1">Category 1</option>
-        <option value="category2">Category 2</option>
+        <option value="NeuralNets">Neural Networks</option>
+        <option value="SymbolicAI">Symbolic AI</option>
+        <option value="GenerativeAI">Generative AI</option>
+        <option value="NLP">Natural Language Processing</option>
+        <option value="ImageProcessing">Image Processing</option>
+        <option value="FoundationalIssues">Foundational Issues</option>
+        <option value="Milestones">Milestones</option>
+        <option value="TechnologicalAdvancements">Technological Advancements</option>
+        <option value="Hardware">Hardware</option>
     </select>
 
     <div class="timeline-container">
@@ -62,8 +69,15 @@
                     image: event.Image || "",
                     link: event.Link || "",
                     priority: Number(event.Priority),
-                    category1: Boolean(event.category1),
-                    category2: Boolean(event.category2),
+                    NeuralNets: Boolean(event.NeuralNets),
+                    SymbolicAI: Boolean(event.SymbolicAI),
+                    GenerativeAI: Boolean(event.GenerativeAI),
+                    NLP: Boolean(event.NLP),
+                    ImageProcessing: Boolean(event.ImageProcessing),
+                    FoundationalIssues: Boolean(event.FoundationalIssues),
+                    Milestones: Boolean(event.Milestones),
+                    TechnologicalAdvancements: Boolean(event.TechnologicalAdvancements),
+                    Hardware: Boolean(event.Hardware),
                 }));
 
                 renderTimeline();
@@ -164,8 +178,15 @@
             eraContainer.innerHTML = '';
 
             let filteredEvents = events.filter(event => {
-                if (selectedCategory === 'category1') return event.category1;
-                if (selectedCategory === 'category2') return event.category2;
+                if (selectedCategory === 'NeuralNets') return event.NeuralNets;
+                if (selectedCategory === 'SymbolicAI') return event.SymbolicAI;
+                if (selectedCategory === 'GenerativeAI') return event.GenerativeAI;
+                if (selectedCategory === 'NLP') return event.NLP;
+                if (selectedCategory === 'ImageProcessing') return event.ImageProcessing;
+                if (selectedCategory === 'FoundationalIssues') return event.FoundationalIssues;
+                if (selectedCategory === 'Milestones') return event.Milestones;
+                if (selectedCategory === 'TechnologicalAdvancements') return event.TechnologicalAdvancements;
+                if (selectedCategory === 'Hardware') return event.Hardware;
                 return true;
             });
             yearSortedEvents = [...filteredEvents].sort((a, b) => a.year - b.year);
