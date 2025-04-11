@@ -114,7 +114,36 @@ nav ul li a:hover, #nav li a.current {
     margin-bottom: 0;
     margin-top: 0;
 }
-
+nav li {
+    position: relative;
+}
+nav li ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    padding: 0;
+    text-align: left;
+    z-index: 1000;
+}
+nav li:hover > ul{
+    display: block;
+}
+nav li ul li {
+    display: block;
+}
+nav li ul li a {
+    width: 100%;
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #671297;
+    color: white;
+    text-align: left;
+    border-radius: 0;
+}
+nav li ul li a:hover {
+    background-color: #34084d;
+}
 /* Description */
 .description {
     text-align: center;
@@ -147,7 +176,23 @@ nav ul li a:hover, #nav li a.current {
     padding: 5px;
     background-color: #ffffff;
     margin-bottom: 2em;
-    
+}
+.grid {
+    display: flex;
+}
+.image {
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #111;
+    border-color: #111;
+}
+.p1 {
+    width: 25%;
+    margin: 10px;
+    margin-right: 20px;
+}
+.p2 {
+    width: 75%;
 }
 /* Eras */
 .eras {
@@ -304,3 +349,41 @@ nav ul li a:hover, #nav li a.current {
 #center{
     text-align: center;
 }
+.container {
+    position: relative;
+    width: 100%;
+}
+.hover_text {
+    display: block;
+    width: 100%;
+    /* height: auto; */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: #921abd;
+  }
+  .container:hover .overlay {
+    opacity: 0.85;
+    border-radius: 10px;
+  }
+  .overlay p {
+    color: white;
+    font-size: 1;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .person ul li a {
+    color: white;
+  }
