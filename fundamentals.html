@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AI History - Fundamental Topics</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="portfolio.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+        </div>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="people.html">People</a>
+                            <ul>
+                                <li><a href="comps.html">AI Engineers</a></li>
+                                <li><a href="philosophers.html">Philosophers</a></li>
+                                <li><a href="mathematicians.html">Mathematicians</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="papers.html">Papers</a></li>
+                        <li><a href="resources.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html" class="current">Online Resources</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    <div class="concept-container">
+        <div class="concept">
+            <div class="grid">
+                <div class="p1">
+                    <div class="container">
+                        <img class="image" src="images/.png" alt="Transformer" class="hover_text">
+                        <div class="overlay">
+                            <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p2">
+                    <h2>The Transformer</h2>
+                    <p>
+                        The foundation for modern NLP models. 
+                        Uses self-attention and cross-attention mechanisms to process input sequences in parallel, making them significantly more efficient than RNN-based models.
+                        Introduced in 2017 in the paper titled “Attention Is All You Need”
+                    </p>
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a class="link-button" href="people/mccarthy.html">View Person</a>
+                </li>
+            </ul>
+        </div>
+    <div class="concept">
+        <div class="grid">
+            <div class="p1">
+                <div class="container">
+                    <img class="image" src="images/.png" alt="Convolutional Neural Network" class="hover_text">
+                    <div class="overlay">
+                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="p2">
+                <h2>The Convolutional Neural Network (CNN)</h2>
+                <p>
+                    A specialized DNN designed for processing grid-like data such as images. 
+                    CNNs use convolutional layers to help detect patterns such as edges, textures, and shapes by applying kernels across an image. 
+                    Frequently, many convolutional layers are used to abstract more complex patterns. 
+                    CNNs are commonly used in image classification, and tasks such as facial recognition.
+                </p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a class="link-button" href="people/mccarthy.html">View Person</a>
+            </li>
+        </ul>
+    </div>
+    <div class="concept">
+        <div class="grid">
+            <div class="p1">
+                <div class="container">
+                    <img class="image" src="images/.png" alt="Neural Network" class="hover_text">
+                    <div class="overlay">
+                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="p2">
+                <h2>Artificial Neural Network</h2>
+                <p>
+                    A computational model inspired by the structure and function of the human brain. 
+                    Consists of layers of neurons, including an input layer, one or more hidden layers, and an output layer. 
+                    Every connection has an associated weight and every neuron has an applied activation function such as sigmoid or ReLU. 
+                    ANNs learn by adjusting weights of connections through optimization techniques such as backpropagation and gradient descent. 
+                </p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a class="link-button" href="people/mccarthy.html">View Person</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+    </script>
+</body>
+</html>

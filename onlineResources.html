@@ -39,6 +39,7 @@
                 </button>
             </div>
         </div>
+        <div id="spinner" class="spinner" style="display: none;"></div>
     <div class="link-container">
     </div>
     <script>
@@ -47,6 +48,26 @@
         const SHEET_URL = "https://script.google.com/macros/s/AKfycbw1QtXWq9OQ-kZcdxVpxH48M25y2U06ha9mP8HKSLEYpojIsZpdyD2VkPU1VpkV-u_S/exec";
 
         async function fetchEvents() {
+            const spinner = document.getElementById("spinner");
+            spinner.style.display = "block";
+
+            const cacheKey = "cachedEvents";
+            const cacheTimestampKey = "cachedEventsTimestamp";
+            const cacheDuration = 1000 * 60 * 10; // 10 minutes
+
+            const cachedData = localStorage.getItem(cacheKey);
+            const cachedTimestamp = localStorage.getItem(cacheTimestampKey);
+            const now = Date.now();
+
+            if (cachedData && cachedTimestamp && (now - cachedTimestamp) < cacheDuration) {
+                // Use cached data
+                events = JSON.parse(cachedData);
+                renderContent();
+                spinner.style.display = "none";
+                return;
+            }
+
+            // Else, fetch fresh data
             try {
                 const response = await fetch(SHEET_URL);
                 const data = await response.json();
@@ -57,9 +78,15 @@
                     linkName: event.LinkName
                 }));
 
+                // Cache it
+                localStorage.setItem(cacheKey, JSON.stringify(events));
+                localStorage.setItem(cacheTimestampKey, now.toString());
+
                 renderContent();
             } catch (error) {
                 console.error("Error fetching events:", error);
+            } finally {
+                spinner.style.display = "none";
             }
         }
         function renderContent() {
