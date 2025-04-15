@@ -4,7 +4,7 @@
         <title>AI History - Online Resources</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="portfolio.css" />
+        <link rel="stylesheet" href="normalize.css" />
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
@@ -44,9 +44,9 @@
     </div>
     <script>
         let events = []; 
-
-        const SHEET_URL = "https://script.google.com/macros/s/AKfycbw1QtXWq9OQ-kZcdxVpxH48M25y2U06ha9mP8HKSLEYpojIsZpdyD2VkPU1VpkV-u_S/exec";
-
+    
+        const SHEET_URL = "https://script.google.com/macros/s/AKfycby7npKo05jy-mtPzFl70hxs7PSjhenEUQIUrkIoxPUIpPTXorbaMqyC8QSUk7vxjmZqDQ/exec";
+    
         async function fetchEvents() {
             const spinner = document.getElementById("spinner");
             spinner.style.display = "block";
@@ -89,42 +89,45 @@
                 spinner.style.display = "none";
             }
         }
+        
         function renderContent() {
             const container = document.querySelector(".link-container");
             container.innerHTML = "";
-
+    
             events.forEach(event => {
                 const linkDiv = document.createElement("div");
                 linkDiv.className = "link";
-
+    
                 const title = document.createElement("h2");
                 title.textContent = event.title;
-
+    
                 const description = document.createElement("p");
                 description.textContent = event.description;
-
+    
                 const ul = document.createElement("ul");
                 const li = document.createElement("li");
                 const a = document.createElement("a");
                 a.className = "link-button";
                 a.href = event.link;
                 a.target = "_blank";
-                a.textContent = "View " + event.linkName;
-
+                a.textContent = event.linkName;
+    
                 li.appendChild(a);
                 ul.appendChild(li);
-
+    
                 linkDiv.appendChild(title);
                 linkDiv.appendChild(description);
                 linkDiv.appendChild(ul);
-
+    
                 container.appendChild(linkDiv);
             });
         }
+    
         function toggleMobileMenu() {
             var nav = document.getElementById("main-nav");
             nav.classList.toggle("show-mobile");
         }
+    
         fetchEvents();
     </script>
 </body>

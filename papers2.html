@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AI History - Papers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="portfolio.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div id="header">
+        <div class="hcol1">
+            <img src="images/StThomasLogo.png" class="img"/>
+        </div>
+        <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+    </div>
+    <div id="header2">
+        <div>
+            <nav id="main-nav">
+                <ul id="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="timeline.html">Timeline</a></li>
+                    <li><a href="people.html">People</a>
+                        <ul>
+                            <li><a href="comps.html">AI Engineers</a></li>
+                            <li><a href="philosophers.html">Philosophers</a></li>
+                            <li><a href="mathematicians.html">Mathematicians</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="papers.html" class="current">Papers</a></li>
+                    <li><a href="resources.html">Further Readings</a></li>
+                    <li><a href="onlineResources.html">Online Resources</a></li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="spinner" style="display:none; text-align: center; margin-top: 2rem;">
+        <p>Loading...</p>
+    </div>
+
+    <div class="paper-container" id="papers-container">
+        <!-- Dynamic papers will be inserted here -->
+    </div>
+
+    <script src="fetch.js"></script>
+    
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+
+        function renderPapers() {
+            const container = document.getElementById("papers-container");
+            const papers = allData["Papers"];
+
+            container.innerHTML = "";
+
+            papers.forEach(paper => {
+                const div = document.createElement("div");
+                div.classList.add("paper");
+
+                div.innerHTML = `
+                    <h2>${paper.Title}</h2>
+                    <h3>Author: ${paper.Author}</h3>
+                    <p>${paper.Description}</p>
+                    ${paper.Link ? `
+                        <ul>
+                            <li><a class="link-button" href="${paper.Link}" target="_blank">View Paper</a></li>
+                        </ul>
+                    ` : ""}
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        window.onload = async () => {
+            await fetchAllContent();
+            renderPapers();
+        };
+    </script>
+</body>
+</html>
