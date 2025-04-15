@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AI History - Online Resources</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="portfolio.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+        </div>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="people.html">People</a>
+                            <ul>
+                                <li><a href="comps.html">AI Engineers</a></li>
+                                <li><a href="philosophers.html">Philosophers</a></li>
+                                <li><a href="mathematicians.html">Mathematicians</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="papers.html">Papers</a></li>
+                        <li><a href="resources.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html" class="current">Online Resources</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    <div class="link-container">
+    </div>
+    <script>
+        let events = []; 
+
+        const SHEET_URL = "https://script.google.com/macros/s/AKfycbw1QtXWq9OQ-kZcdxVpxH48M25y2U06ha9mP8HKSLEYpojIsZpdyD2VkPU1VpkV-u_S/exec";
+
+        async function fetchEvents() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const data = await response.json();
+                events = data.map(event => ({
+                    title: event.Title,
+                    description: event.Description,
+                    link: event.Link,
+                    linkName: event.LinkName
+                }));
+
+                renderContent();
+            } catch (error) {
+                console.error("Error fetching events:", error);
+            }
+        }
+        function renderContent() {
+            const container = document.querySelector(".link-container");
+            container.innerHTML = "";
+
+            events.forEach(event => {
+                const linkDiv = document.createElement("div");
+                linkDiv.className = "link";
+
+                const title = document.createElement("h2");
+                title.textContent = event.title;
+
+                const description = document.createElement("p");
+                description.textContent = event.description;
+
+                const ul = document.createElement("ul");
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.className = "link-button";
+                a.href = event.link;
+                a.target = "_blank";
+                a.textContent = "View " + event.linkName;
+
+                li.appendChild(a);
+                ul.appendChild(li);
+
+                linkDiv.appendChild(title);
+                linkDiv.appendChild(description);
+                linkDiv.appendChild(ul);
+
+                container.appendChild(linkDiv);
+            });
+        }
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+        fetchEvents();
+    </script>
+</body>
+</html>
