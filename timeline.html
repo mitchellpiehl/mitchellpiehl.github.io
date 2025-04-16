@@ -21,8 +21,8 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="timeline.html" class="current">Timeline</a>
                         <ul>
-                            <li><a href="timeline.html">Post-1900</a></li>
-                            <li><a href="timeline2.html">Pre-1900</a></li>
+                            <li><a href="timeline.html">Post-1950</a></li>
+                            <li><a href="timeline2.html">Pre-1950</a></li>
                         </ul>
                     </li>
                     <li><a href="people.html">People</a>
@@ -48,7 +48,7 @@
 
     <ul>
         <li>
-            <a class="link-button" href="timeline2.html">View Pre-1900 Timeline</a>
+            <a class="link-button" href="timeline2.html">View Pre-1950 Timeline</a>
         </li>
     </ul>
     
@@ -69,40 +69,13 @@
         <div class="eras" id="eras"></div>
         <div class="timeline" id="timeline"></div>
     </div>
+    <script src="fetch.js"></script>
     <script>
-        let events = []; 
-
-        const SHEET_URL = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec";
-
-        async function fetchEvents() {
-            try {
-                const response = await fetch(SHEET_URL);
-                const data = await response.json();
-                events = data.map(event => ({
-                    year: Number(event.Year),
-                    short: event.Short,
-                    long: event.Long,
-                    description: event.Description,
-                    image: event.Image || "",
-                    link: event.Link || "",
-                    priority: Number(event.Priority),
-                    NeuralNets: Boolean(event.NeuralNets),
-                    SymbolicAI: Boolean(event.SymbolicAI),
-                    GenerativeAI: Boolean(event.GenerativeAI),
-                    NLP: Boolean(event.NLP),
-                    ImageProcessing: Boolean(event.ImageProcessing),
-                    FoundationalIssues: Boolean(event.FoundationalIssues),
-                    Milestones: Boolean(event.Milestones),
-                    TechnologicalAdvancements: Boolean(event.TechnologicalAdvancements),
-                    Hardware: Boolean(event.Hardware),
-                }));
-
-                renderTimeline();
-            } catch (error) {
-                console.error("Error fetching events:", error);
-            }
+        async function initializePage() {
+            await fetchAllData();
+            renderTimeline();
         }
-        
+
         const eras = [
             { name: "Golden Age", start: 1956, end: 1974, color: "#FFD700" },
             { name: "First AI Winter", start: 1974, end: 1980, color: "#ADD8E6" },
@@ -302,12 +275,8 @@
         });
         document.body.appendChild(zoomSlider);
 
-        fetchEvents();
+        initializePage();
         
-        function toggleMobileMenu() {
-            var nav = document.getElementById("main-nav");
-            nav.classList.toggle("show-mobile");
-        }
     </script>
 </body>
 </html>

@@ -1,10 +1,12 @@
 let papers = [];
 let resources = [];
 let readings = [];
+let events = [];
 
 const SHEET_URL_PAPERS = "https://script.google.com/macros/s/AKfycbwqNXj4iMMebpXALpmfOYc-wwGZ7p7b5iKIFizMCcZHesB9VV78bSCg-uIdXHFhqio/exec";
 const SHEET_URL_RESOURCES = "https://script.google.com/macros/s/AKfycby7npKo05jy-mtPzFl70hxs7PSjhenEUQIUrkIoxPUIpPTXorbaMqyC8QSUk7vxjmZqDQ/exec";
 const SHEET_URL_READINGS = "https://script.google.com/macros/s/AKfycbwDp4Yzns7xZQGImgVTfGeGUKGY2NPV9PRAhgX-Wf2e7ohzklEUid-THwVM189uehKu3A/exec";
+const SHEET_URL_EVENTS = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec";
 
 function toggleSpinner(show = true) {
     const spinner = document.getElementById("spinner");
@@ -38,7 +40,7 @@ async function fetchAllData() {
     toggleSpinner(true);
 
     try {
-        const [fetchedPapers, fetchedResources, fetchedReadings] = await Promise.all([
+        const [fetchedPapers, fetchedResources, fetchedReadings, fetchedEvents] = await Promise.all([
             fetchWithCache(SHEET_URL_PAPERS, "cachedPapers", 10, data =>
                 data.map(p => ({
                     title: p.Title,
@@ -63,12 +65,33 @@ async function fetchAllData() {
                     description: re.Description,
                     link: re.Link
                 }))
+            ),
+            fetchWithCache(SHEET_URL_EVENTS, "cachedEvents", 10, data =>
+                data.map(event => ({
+                    year: Number(event.Year),
+                    short: event.Short,
+                    long: event.Long,
+                    description: event.Description,
+                    image: event.Image || "",
+                    link: event.Link || "",
+                    priority: Number(event.Priority),
+                    NeuralNets: Boolean(event.NeuralNets),
+                    SymbolicAI: Boolean(event.SymbolicAI),
+                    GenerativeAI: Boolean(event.GenerativeAI),
+                    NLP: Boolean(event.NLP),
+                    ImageProcessing: Boolean(event.ImageProcessing),
+                    FoundationalIssues: Boolean(event.FoundationalIssues),
+                    Milestones: Boolean(event.Milestones),
+                    TechnologicalAdvancements: Boolean(event.TechnologicalAdvancements),
+                    Hardware: Boolean(event.Hardware)
+                }))
             )
         ]);
 
         papers = fetchedPapers;
         resources = fetchedResources;
         readings = fetchedReadings;
+        events = fetchedEvents;
 
     } catch (error) {
         console.error("Error fetching data:", error);
