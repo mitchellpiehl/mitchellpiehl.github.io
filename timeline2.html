@@ -52,19 +52,6 @@
         </li>
     </ul>
 
-    <select id="categoryFilter">
-        <option value="all">All Events</option>
-        <option value="NeuralNets">Neural Networks</option>
-        <option value="SymbolicAI">Symbolic AI</option>
-        <option value="GenerativeAI">Generative AI</option>
-        <option value="NLP">Natural Language Processing</option>
-        <option value="ImageProcessing">Image Processing</option>
-        <option value="FoundationalIssues">Foundational Issues</option>
-        <option value="Milestones">Milestones</option>
-        <option value="TechnologicalAdvancements">Technological Advancements</option>
-        <option value="Hardware">Hardware</option>
-    </select>
-
     <div class="timeline-container">
         <div class="eras" id="eras"></div>
         <div class="timeline" id="timeline"></div>
@@ -85,8 +72,8 @@
         let zoomStep = 0.1;
         let currentEventIndex = 0;
         let yearSortedEvents = [];
-        const minZoom = 0.5;
-        const maxZoom = 10;
+        const minZoom = 0.1;
+        const maxZoom = 3;
 
         const modal = document.createElement('div');
         modal.classList.add('modal');
@@ -204,11 +191,36 @@
                     
                     timeline.appendChild(eventElement);
                 }
+                const startYear = 1400;
+                const endYear = 1950;
+                const totalYears = endYear - startYear;
+                const dynamicHeight = totalYears * 10.1 * zoomLevel;
+
+                timeline.style.height = `${dynamicHeight}px`;
+                eraContainer.style.height = `${dynamicHeight}px`;
             });
 
             if (yearSortedEvents.length > 0) {
                 showModal(yearSortedEvents[0]);
             }
+            const eras = [
+                { name: "Renaissance", start: 1400, end: 1600, color: "#fde68a" },
+                { name: "Enlightenment", start: 1600, end: 1800, color: "#bfdbfe" },
+                { name: "Industrial Revolution", start: 1800, end: 1900, color: "#c7d2fe" },
+                { name: "Age of Machines", start: 1900, end: 1950, color: "#fca5a5" }
+            ];
+
+            eras.forEach(era => {
+                const eraElement = document.createElement('div');
+                eraElement.classList.add('era');
+                eraElement.style.top = `${(era.start - 1400) * 10 * zoomLevel}px`;
+                eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
+                eraElement.style.backgroundColor = era.color;
+                eraElement.style.width = '80%';
+                eraElement.style.position = 'absolute';
+                eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
+                eraContainer.appendChild(eraElement);
+            });
         }
 
         function animateZoom() {

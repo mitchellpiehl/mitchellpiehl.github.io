@@ -239,6 +239,13 @@
                 }
             });
             showModal(yearSortedEvents[0]);
+            const startYear = 1940;
+            const endYear = 2025;
+            const totalYears = endYear - startYear;
+            const dynamicHeight = totalYears * 10.1 * zoomLevel;
+
+            timeline.style.height = `${dynamicHeight}px`;
+            eraContainer.style.height = `${dynamicHeight}px`;
         }
 
         function animateZoom() {
