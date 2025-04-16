@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AI History - Papers</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="portfolio.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+        </div>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                        <li><a href="people.html">People</a>
+                            <ul>
+                                <li><a href="comps.html">AI Engineers</a></li>
+                                <li><a href="philosophers.html">Philosophers</a></li>
+                                <li><a href="mathematicians.html">Mathematicians</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="papers.html" class="current">Papers</a></li>
+                        <li><a href="resources.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html">Online Resources</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    <div class="paper-container">
+        <div class="paper">
+            <h2>The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain - 1958</h2>
+            <h3>Author: Frank Rosenblatt</h3>
+            <p>
+                Introduction of the first type of neural model that simulates the brain called the perceptron.
+                The model is very simple with only one input layer feeding directly into one output layer. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://www.ling.upenn.edu/courses/cogs501/Rosenblatt1958.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Learning representations by back-propagating errors - 1986</h2>
+            <h3>Authors: David Rumelhart, Geoffrey Hinton, and Ronald Williams</h3>
+            <p>
+                Introduces a new learning procedure in neural networks called back-propagtion. 
+                Back-propagation allows neural networks to adjust the weights within hidden layers to effectively "learn" and provide more accurate outputs. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://www.nature.com/articles/323533a0" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Finding Structure in Time - 1990</h2>
+            <h3>Author: Jeffrey Elman</h3>
+            <p>
+                Creation of the Recurrent Neural Network (RNN) that uses feedback loops within the layers of the neural net to allow time or text based inputs.
+                By using RNN's, inputs of differing lengths can be used and understood, unlike normal neural networks. However, RNNs tend to "forget" input that was 
+                inputted over time. This is called the vanishing gradient problem. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://onlinelibrary.wiley.com/doi/epdf/10.1207/s15516709cog1402_1" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Long Short-Term Memory - 1997</h2>
+            <h3>Authors: Sepp Hochreiter, Jurgen Schmidhuber</h3>
+            <p>
+                A defense to the vanishing gradient problem in RNNs by adding gates and memory cells to hold important information for longer. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://www.bioinf.jku.at/publications/older/2604.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Gradient-based Learning Applied to Document Recognition - 1998</h2>
+            <h3>Authors: Yann LeCun, Leon Bottou, Yoshua Bengio, Patrick Haffner</h3>
+            <p>
+                Introduction of the Convolutional Neural Network or CNN, which scans through small sections of input data to create convolutional layers
+                which can be used to find features. CNNs are incredibly useful for image recognition and other similar tasks. This paper uses CNNs to read 
+                numbers on a check with high levels of accuracy.
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://ieeexplore.ieee.org/document/726791" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>ImageNet: A large-scale hierarchical image database - 2009</h2>
+            <h3>Authors: Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Ki, Fei-Fei Li</h3>
+            <p>
+                Introduces ImageNet; a image dataset containing 3.2 million labled images, allowing researchers to train more advanced models on a dataset magnitudes larger than before.
+                This dataset revolutionized deep learning and big data, creating the birth of the deep learning revolution. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://ieeexplore.ieee.org/abstract/document/5206848" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>ImageNet Classification with Deep Convolutional Neural Networks - 2012</h2>
+            <h3>Authors: Alex Krizhevsky, Ilya Sutskever, Geoffrey Hinton</h3>
+            <p>
+                Uses the convolutional neural network (CNN) to classify ImageNet images with significantly greater accuracy than ever before. 
+                The paper completely revitalized neural networks, showing their large potential and inspiring researchers to dive deeper into neural networks than ever before. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Efficient Estimation of Word Representations in Vector Space - 2013</h2>
+            <h3>Authors: Tomas Mikolov, Kai Chen, Greg Corrando, Jeffrey Dean</h3>
+            <p>
+                Introduces word vectors (or Word2Vec); a way to store words in a vector space so that words with similar meanings contain similar values to the words around it.
+                This allows for much more efficient and accurate processing of words in natural language processing tasks. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://www.khoury.northeastern.edu/home/vip/teach/DMcourse/4_TF_supervised/notes_slides/1301.3781.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Attention is All You Need - 2017</h2>
+            <h3>Authors: Ashish Vaswani, Noam Shazeer, Niki Parmer, Jakob Uszkoreit, Llion Jones, Aidan Gomez, Lukasz Kaiser, Illia Polosukhin</h3>
+            <p>
+                Paper written by Google that releases the transformer. The transformer is a deep learning architecture that uses multi-headed attention 
+                and processes inputs in parellel to get more accurate outputs. 
+                Completely revolutionized the natural language processing world by its implications in large language models such as ChatGPT.
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+        <div class="paper">
+            <h2>Language Models are unsupervised multitask learners - 2019</h2>
+            <h3>Authors: Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, Ilya Sutskever</h3>
+            <p>
+                Paper from OpenAI that releases GPT-2. A transformer power large language model that demonstrates the abilities of langugage models to perform a large variety of tasks. 
+            </p>
+            <ul>
+                <li>
+                    <a class="link-button" href="https://storage.prod.researchhub.com/uploads/papers/2020/06/01/language-models.pdf" target="_blank">View Paper</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleMobileMenu() {
+            var nav = document.getElementById("main-nav");
+            nav.classList.toggle("show-mobile");
+        }
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>AI History - Online Resources</title>
+        <title>AI History - Further Readings</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="normalize.css" />
@@ -28,8 +28,8 @@
                             </ul>
                         </li>
                         <li><a href="papers.html">Papers</a></li>
-                        <li><a href="readings.html">Further Readings</a></li>
-                        <li><a href="onlineResources.html" class="current">Online Resources</a></li>
+                        <li><a href="readings.html" class="current">Further Readings</a></li>
+                        <li><a href="onlineResources.html">Online Resources</a></li>
                     </ul>
                 </nav>
                 <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -39,10 +39,10 @@
                 </button>
             </div>
         </div>
-        <div id="spinner" class="spinner" style="display: none;"></div>
-    <div class="link-container">
+    <h3 id="center">Further readings are in order from most to least recommended</h3>
+    <h3 id="center">**More technical based further readings are noted with asteriks**</h3>
+    <div class="resource-container">
     </div>
-
     <script src="fetch.js"></script>
     <script>
         async function initializePage() {
@@ -51,15 +51,21 @@
         }
 
         function renderContent() {
-            const container = document.querySelector(".link-container");
+            const container = document.querySelector(".resource-container");
             container.innerHTML = "";
     
-            resources.forEach(event => {
+            readings.forEach(event => {
                 const linkDiv = document.createElement("div");
                 linkDiv.className = "link";
     
                 const title = document.createElement("h2");
                 title.textContent = event.title;
+
+                const author = document.createElement("h3");
+                author.textContent = "Author: " + event.author;
+
+                const published = document.createElement("h3");
+                published.textContent = "Published: " + event.published;
     
                 const description = document.createElement("p");
                 description.textContent = event.description;
@@ -70,12 +76,14 @@
                 a.className = "link-button";
                 a.href = event.link;
                 a.target = "_blank";
-                a.textContent = event.linkName;
+                a.textContent = "View Reading";
     
                 li.appendChild(a);
                 ul.appendChild(li);
     
                 linkDiv.appendChild(title);
+                linkDiv.appendChild(author);
+                linkDiv.appendChild(published);
                 linkDiv.appendChild(description);
                 linkDiv.appendChild(ul);
     
