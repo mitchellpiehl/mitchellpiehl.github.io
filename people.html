@@ -53,7 +53,13 @@
             </div>
         </div>
     <h3 id="center">Click on any person to see more information!</h3>
-    <div class="people-container">
+    <div class="main-content">
+        <div class="people-list">
+            
+        </div>
+        <div class="person-details">
+            
+        </div>
     </div>
     <script src="fetch.js"></script>
     <script>
@@ -61,84 +67,104 @@
             await fetchAllData();
             renderContent();
         }
-
+    
         function renderContent() {
-            const container = document.querySelector(".people-container");
-            container.innerHTML = "";
-
-            const sortedPeople = [...people].sort((a, b) => {
-                const birthA = parseInt(a.birth);
-                const birthB = parseInt(b.birth);
-                return birthA - birthB;
-            });
-
-            sortedPeople.forEach(person => {
+            const listContainer = document.querySelector(".people-list");
+            const detailContainer = document.querySelector(".person-details");
+            listContainer.innerHTML = "";
+            detailContainer.innerHTML = "";
+    
+            // Sort by birth year
+            const sortedPeople = [...people].sort((a, b) => parseInt(a.birth) - parseInt(b.birth));
+    
+            // Helper to render detailed view
+            function renderPersonDetail(person) {
+                detailContainer.innerHTML = `
+                    <h2>${person.name}</h2>
+                    <h3>${person.birth} - ${person.death}</h3>
+                    <img src="images/${person.image}" alt="${person.name}" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1em;" />
+                    <p>${person.long}</p>
+                    <p><strong>Image Source:</strong> <a href="${person.imageSource}" target="_blank">${person.sourceName}</a></p>
+                `;
+            }
+    
+            // Create list items
+            sortedPeople.forEach((person, index) => {
                 const personDiv = document.createElement("div");
                 personDiv.className = "person";
-
+    
                 const gridDiv = document.createElement("div");
                 gridDiv.className = "grid";
-
+    
                 const p1 = document.createElement("div");
                 p1.className = "p1";
-
+    
                 const containerDiv = document.createElement("div");
                 containerDiv.className = "container";
-
+    
                 const img = document.createElement("img");
                 img.className = "image";
                 img.src = `images/${person.image}`;
                 img.alt = person.name;
-
+    
                 const overlay = document.createElement("div");
                 overlay.className = "overlay";
-
+    
                 const sourcePara = document.createElement("p");
                 sourcePara.className = "white";
                 sourcePara.innerHTML = `Image Source: <a href="${person.imageSource}" target="_blank">${person.sourceName}</a>`;
-
+    
                 overlay.appendChild(sourcePara);
                 containerDiv.appendChild(img);
                 containerDiv.appendChild(overlay);
                 p1.appendChild(containerDiv);
-
+    
                 const p2 = document.createElement("div");
                 p2.className = "p2";
-
+    
                 const nameEl = document.createElement("h2");
                 nameEl.textContent = person.name;
-
+    
                 const yearsEl = document.createElement("h3");
                 yearsEl.textContent = `${person.birth}-${person.death}`;
-
+    
                 const desc = document.createElement("p");
                 desc.textContent = person.short;
-
+    
                 p2.appendChild(nameEl);
                 p2.appendChild(yearsEl);
                 p2.appendChild(desc);
-
+    
                 gridDiv.appendChild(p1);
                 gridDiv.appendChild(p2);
-
+    
                 const ul = document.createElement("ul");
                 const li = document.createElement("li");
                 const link = document.createElement("a");
                 link.className = "link-button";
-                link.href = ""; // add real link if available
+                link.href = "#";
                 link.textContent = "View Person";
-
+    
+                link.addEventListener("click", e => {
+                    e.preventDefault();
+                    renderPersonDetail(person);
+                });
+    
                 li.appendChild(link);
                 ul.appendChild(li);
-
+    
                 personDiv.appendChild(gridDiv);
                 personDiv.appendChild(ul);
-
-                container.appendChild(personDiv);
+    
+                listContainer.appendChild(personDiv);
+    
+                // Automatically show first person
+                if (index === 0) {
+                    renderPersonDetail(person);
+                }
             });
         }
-
-
+    
         initializePage();
     </script>
 </body>

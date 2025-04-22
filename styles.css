@@ -170,17 +170,57 @@ nav li ul li a:hover {
     scroll-behavior: smooth;
 }
 
-.people-container, .paper-container, .resource-container, .link-container, .home-container, .concept-container{
+.paper-container, .resource-container, .link-container, .home-container, .concept-container{
     width: 90%;
     margin-left: 5%;
     margin-top: 1em;
 }
-.paper, .resource, .person, .link, .concept {
+.resource, .person, .link, .concept {
     border: 2px solid #111;
     border-radius: 10px;
     padding: 5px;
     background-color: #ffffff;
     margin-bottom: 2em;
+}
+.people-container {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+    z-index: 10000;
+}
+.paper {
+    border: 2px solid #111;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    margin-bottom: 2em;
+}
+.main-content {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 2em auto;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+.people-list {
+    width: 40%;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+.person-details {
+    width: 60%;
+    position: sticky;
+    top: 100px; /* adjust depending on your header height */
+    align-self: flex-start;
+    background-color: #fff;
+    padding: 1em;
+    border: 2px solid #111;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 .grid {
     display: flex;
