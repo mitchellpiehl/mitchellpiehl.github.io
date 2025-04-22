@@ -35,12 +35,12 @@
                         <li><a href="papers.html">Papers</a></li>
                         <li><a href="readings.html">Further Readings</a></li>
                         <li><a href="onlineResources.html">Online Resources</a></li>
-                        <li><a href="fundamentals.html">Fundamentals</a>
+                        <li><a href="fundamentals.html" class="current">Fundamentals</a>
                             <ul>
                                 <li><a href="fundamentalsAI.html">AI systems</a></li>
-                                <li><a href="fundamentals.html">Logic/Mathematics</a></li>
-                                <li><a href="fundamentals.html">Computer Development</a></li>
-                                <li><a href="fundamentals.html">Philosophy</a></li>
+                                <li><a href="mathFoundations.html">Logic/Mathematics</a></li>
+                                <li><a href="compFoundations.html">Computer Development</a></li>
+                                <li><a href="philFoundations.html">Philosophy</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -52,137 +52,91 @@
                 </button>
             </div>
         </div>
-    <div class="concept-container">
-        <div class="concept">
-            <div class="grid">
-                <div class="p1">
-                    <div class="container">
-                        <img class="image" src="images/.png" alt="Transformer" class="hover_text">
-                        <div class="overlay">
-                            <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="p2">
-                    <h2>The Transformer</h2>
-                    <p>
-                        The foundation for modern NLP models. 
-                        Uses self-attention and cross-attention mechanisms to process input sequences in parallel, making them significantly more efficient than RNN-based models.
-                        Introduced in 2017 in the paper titled “Attention Is All You Need”
-                    </p>
-                </div>
-            </div>
-            <ul>
-                <li>
-                    <a class="link-button" href="people/mccarthy.html">View Person</a>
-                </li>
-            </ul>
+        <div id="spinner" class="spinner" style="display: none;"></div>
+        <div class="concept-container">
         </div>
-    <div class="concept">
-        <div class="grid">
-            <div class="p1">
-                <div class="container">
-                    <img class="image" src="images/.png" alt="Convolutional Neural Network" class="hover_text">
-                    <div class="overlay">
-                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="p2">
-                <h2>The Convolutional Neural Network (CNN)</h2>
-                <p>
-                    A specialized DNN designed for processing grid-like data such as images. 
-                    CNNs use convolutional layers to help detect patterns such as edges, textures, and shapes by applying kernels across an image. 
-                    Frequently, many convolutional layers are used to abstract more complex patterns. 
-                    CNNs are commonly used in image classification, and tasks such as facial recognition.
-                </p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a class="link-button" href="people/mccarthy.html">View Person</a>
-            </li>
-        </ul>
-    </div>
-    <div class="concept">
-        <div class="grid">
-            <div class="p1">
-                <div class="container">
-                    <img class="image" src="images/.png" alt="Recurrent Neural Network" class="hover_text">
-                    <div class="overlay">
-                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="p2">
-                <h2>The Recurrent Neural Network (RNN)</h2>
-                <p>
-                    A type of neural network that uses loops that allow information to persist across time steps, allowing the processing of sequential data, such as text. 
-                    RNNs suffer from vanishing gradients, which means inputs at the beginning of long sequences tend to get “forgotten.”
-                </p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a class="link-button" href="people/mccarthy.html">View Person</a>
-            </li>
-        </ul>
-    </div>
-    <div class="concept">
-        <div class="grid">
-            <div class="p1">
-                <div class="container">
-                    <img class="image" src="images/.png" alt="Back Propagation" class="hover_text">
-                    <div class="overlay">
-                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="p2">
-                <h2>Back Propagation</h2>
-                <p>
-                    A breakthrough in neural networks that allowed multilayered neural nets to learn off of mistakes and thus become significantly more powerful. 
-                </p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a class="link-button" href="people/mccarthy.html">View Person</a>
-            </li>
-        </ul>
-    </div>
-    <div class="concept">
-        <div class="grid">
-            <div class="p1">
-                <div class="container">
-                    <img class="image" src="images/.png" alt="Neural Network" class="hover_text">
-                    <div class="overlay">
-                        <p class="white"> Image Source: <a href="" target="_blank" >this page</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="p2">
-                <h2>Artificial Neural Network</h2>
-                <p>
-                    A computational model inspired by the structure and function of the human brain. 
-                    Consists of layers of neurons, including an input layer, one or more hidden layers, and an output layer. 
-                    Every connection has an associated weight and every neuron has an applied activation function such as sigmoid or ReLU. 
-                    ANNs learn by adjusting weights of connections through optimization techniques such as backpropagation and gradient descent. 
-                </p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a class="link-button" href="people/mccarthy.html">View Person</a>
-            </li>
-        </ul>
-    </div>
-    </div>
-    <script>
-        function toggleMobileMenu() {
-            var nav = document.getElementById("main-nav");
-            nav.classList.toggle("show-mobile");
-        }
-    </script>
-</body>
+        <script src="fetch.js"></script>
+        <script>
+            async function initializePage() {
+                await fetchAllData();
+                renderContent();
+            }
+            function renderContent() {
+                const container = document.querySelector(".concept-container");
+                container.innerHTML = "";
+
+                const filteredConcepts = concepts.filter(concept => concept.aiSystems);
+
+                filteredConcepts.forEach(concept => {
+                    const conceptDiv = document.createElement("div");
+                    conceptDiv.className = "concept";
+
+                    // Create the grid container
+                    const gridDiv = document.createElement("div");
+                    gridDiv.className = "grid";
+
+                    // Left image column
+                    const p1 = document.createElement("div");
+                    p1.className = "p1";
+
+                    const containerDiv = document.createElement("div");
+                    containerDiv.className = "container";
+
+                    const img = document.createElement("img");
+                    img.className = "image";
+                    img.src = `images/${concept.image}`;
+                    img.alt = concept.title;
+
+                    const overlay = document.createElement("div");
+                    overlay.className = "overlay";
+
+                    const sourcePara = document.createElement("p");
+                    sourcePara.className = "white";
+                    sourcePara.innerHTML = `Image Source: <a href="${concept.imageSource}" target="_blank">${concept.sourceName}</a>`;
+
+                    overlay.appendChild(sourcePara);
+                    containerDiv.appendChild(img);
+                    containerDiv.appendChild(overlay);
+                    p1.appendChild(containerDiv);
+
+                    // Right text column
+                    const p2 = document.createElement("div");
+                    p2.className = "p2";
+
+                    const nameEl = document.createElement("h2");
+                    nameEl.textContent = concept.title;
+
+                    const desc = document.createElement("p");
+                    desc.textContent = concept.description;
+
+                    p2.appendChild(nameEl);
+                    p2.appendChild(desc);
+
+                    // Append to grid
+                    gridDiv.appendChild(p1);
+                    gridDiv.appendChild(p2);
+
+                    // Link section
+                    const ul = document.createElement("ul");
+                    const li = document.createElement("li");
+                    const link = document.createElement("a");
+                    link.className = "link-button";
+                    link.href = ""; // add real link if available
+                    link.textContent = "View More";
+
+                    li.appendChild(link);
+                    ul.appendChild(li);
+
+                    // Combine everything
+                    conceptDiv.appendChild(gridDiv);
+                    conceptDiv.appendChild(ul);
+
+                    container.appendChild(conceptDiv);
+                });
+            }
+
+            initializePage();
+
+        </script>
+    </body>
 </html>

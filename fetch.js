@@ -3,14 +3,14 @@ let resources = [];
 let readings = [];
 let events = [];
 let people = [];
-let fundamentals = [];
+let concepts = [];
 
 const SHEET_URL_PAPERS = "https://script.google.com/macros/s/AKfycbwqNXj4iMMebpXALpmfOYc-wwGZ7p7b5iKIFizMCcZHesB9VV78bSCg-uIdXHFhqio/exec";
 const SHEET_URL_RESOURCES = "https://script.google.com/macros/s/AKfycby7npKo05jy-mtPzFl70hxs7PSjhenEUQIUrkIoxPUIpPTXorbaMqyC8QSUk7vxjmZqDQ/exec";
 const SHEET_URL_READINGS = "https://script.google.com/macros/s/AKfycbwDp4Yzns7xZQGImgVTfGeGUKGY2NPV9PRAhgX-Wf2e7ohzklEUid-THwVM189uehKu3A/exec";
 const SHEET_URL_EVENTS = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec";
 const SHEET_URL_PEOPLE = "https://script.google.com/macros/s/AKfycbyEasWdnuj7nwke5WnJx7PjNfrkQ3KT3B3prJV9z6xFqquzOvXW9K5TcpV3MklpiBvL/exec";
-const SHEET_URL_FUNDAMENTALS = "https://script.google.com/macros/s/AKfycbwDp4Yzns7xZQGImgVTfGeGUKGY2NPV9PRAhgX-Wf2e7ohzklEUid-THwVM189uehKu3A/exec";
+const SHEET_URL_FUNDAMENTALS = "https://script.google.com/macros/s/AKfycbyjw3MRnLXK9-ocTFC0HKOCcReG88O9b6xR3T7lvr8eupT-6WtoPbaOIKpZzX21Snmo/exec";
 
 function toggleSpinner(show = true) {
     const spinner = document.getElementById("spinner");
@@ -106,12 +106,16 @@ async function fetchAllData() {
                 }))
             ),
             fetchWithCache(SHEET_URL_FUNDAMENTALS, "cachedFundamentals", 10, data =>
-                data.map(re => ({
-                    title: re.Title,
-                    author: re.Author,
-                    published: re.Published,
-                    description: re.Description,
-                    link: re.Link
+                data.map(f => ({
+                    title: f.Title,
+                    description: f.Description,
+                    image: f.Image || "",
+                    imageSource: f.ImageSource || "",
+                    sourceName: f.SourceName || "",
+                    aiSystems: Boolean(f.aiSystems),
+                    logic: Boolean(f.Logic),
+                    hardware: Boolean(f.Hardware),
+                    philosophy: Boolean(f.Philosophy)
                 }))
             ),
         ]);
@@ -121,7 +125,7 @@ async function fetchAllData() {
         readings = fetchedReadings;
         events = fetchedEvents;
         people = fetchedPeople;
-        fundamentals = fetchedFundamentals;
+        concepts = fetchedFundamentals;
 
     } catch (error) {
         console.error("Error fetching data:", error);

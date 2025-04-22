@@ -65,7 +65,9 @@
                 const container = document.querySelector(".concept-container");
                 container.innerHTML = "";
 
-                concepts.forEach(concept => {
+                const filteredConcepts = concepts.filter(concept => concept.hardware);
+
+                filteredConcepts.forEach(concept => {
                     const conceptDiv = document.createElement("div");
                     conceptDiv.className = "concept";
 
