@@ -2,11 +2,15 @@ let papers = [];
 let resources = [];
 let readings = [];
 let events = [];
+let people = [];
+let fundamentals = [];
 
 const SHEET_URL_PAPERS = "https://script.google.com/macros/s/AKfycbwqNXj4iMMebpXALpmfOYc-wwGZ7p7b5iKIFizMCcZHesB9VV78bSCg-uIdXHFhqio/exec";
 const SHEET_URL_RESOURCES = "https://script.google.com/macros/s/AKfycby7npKo05jy-mtPzFl70hxs7PSjhenEUQIUrkIoxPUIpPTXorbaMqyC8QSUk7vxjmZqDQ/exec";
 const SHEET_URL_READINGS = "https://script.google.com/macros/s/AKfycbwDp4Yzns7xZQGImgVTfGeGUKGY2NPV9PRAhgX-Wf2e7ohzklEUid-THwVM189uehKu3A/exec";
 const SHEET_URL_EVENTS = "https://script.google.com/macros/s/AKfycbwg-gX4zaLv8YYkQApeD5YRRmxps3s1s3X3tqwpifwmCIpqVw74aQbgrNTFW9K-EnuD/exec";
+const SHEET_URL_PEOPLE = "https://script.google.com/macros/s/AKfycbyEasWdnuj7nwke5WnJx7PjNfrkQ3KT3B3prJV9z6xFqquzOvXW9K5TcpV3MklpiBvL/exec";
+const SHEET_URL_FUNDAMENTALS = "https://script.google.com/macros/s/AKfycbwDp4Yzns7xZQGImgVTfGeGUKGY2NPV9PRAhgX-Wf2e7ohzklEUid-THwVM189uehKu3A/exec";
 
 function toggleSpinner(show = true) {
     const spinner = document.getElementById("spinner");
@@ -40,7 +44,7 @@ async function fetchAllData() {
     toggleSpinner(true);
 
     try {
-        const [fetchedPapers, fetchedResources, fetchedReadings, fetchedEvents] = await Promise.all([
+        const [fetchedPapers, fetchedResources, fetchedReadings, fetchedEvents, fetchedPeople, fetchedFundamentals] = await Promise.all([
             fetchWithCache(SHEET_URL_PAPERS, "cachedPapers", 10, data =>
                 data.map(p => ({
                     title: p.Title,
@@ -85,13 +89,39 @@ async function fetchAllData() {
                     TechnologicalAdvancements: Boolean(event.TechnologicalAdvancements),
                     Hardware: Boolean(event.Hardware)
                 }))
-            )
+            ),
+            fetchWithCache(SHEET_URL_PEOPLE, "cachedPeople", 10, data =>
+                data.map(p => ({
+                    name: p.Name,
+                    birth: p.Birth,
+                    death: p.Death || "",
+                    short: p.Short,
+                    long: p.Long,
+                    image: p.Image,
+                    imageSource: p.ImageSource,
+                    sourceName: p.SourceName,
+                    aiEngineer: Boolean(p.aiEngineer),
+                    philosopher: Boolean(p.Philosopher),
+                    mathematician: Boolean(p.Mathematician)
+                }))
+            ),
+            fetchWithCache(SHEET_URL_FUNDAMENTALS, "cachedFundamentals", 10, data =>
+                data.map(re => ({
+                    title: re.Title,
+                    author: re.Author,
+                    published: re.Published,
+                    description: re.Description,
+                    link: re.Link
+                }))
+            ),
         ]);
 
         papers = fetchedPapers;
         resources = fetchedResources;
         readings = fetchedReadings;
         events = fetchedEvents;
+        people = fetchedPeople;
+        fundamentals = fetchedFundamentals;
 
     } catch (error) {
         console.error("Error fetching data:", error);
