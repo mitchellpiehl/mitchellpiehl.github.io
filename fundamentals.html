@@ -29,14 +29,7 @@
                         <li><a href="papers.html">Papers</a></li>
                         <li><a href="readings.html">Further Readings</a></li>
                         <li><a href="onlineResources.html">Online Resources</a></li>
-                        <li><a href="fundamentals.html" class="current">Glossary</a>
-                            <ul>
-                                <li><a href="fundamentalsAI.html">AI systems</a></li>
-                                <li><a href="mathFoundations.html">Logic/Mathematics</a></li>
-                                <li><a href="compFoundations.html">Computer Development</a></li>
-                                <li><a href="philFoundations.html">Philosophy</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="fundamentals.html" class="current">Glossary</a></li>
                     </ul>
                 </nav>
                 <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
@@ -47,20 +40,41 @@
             </div>
         </div>
         <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
+        <select id="categoryFilter">
+            <option value="all">All Concepts</option>
+            <option value="aiSystems">AI Systems</option>
+            <option value="logic">Logic/Mathematics</option>
+            <option value="hardware">Computer Development</option>
+            <option value="philosophy">Philosophy</option>
+        </select>
         <div id="spinner" class="spinner" style="display: none;"></div>
         <div class="concept-container">
         </div>
         <script src="fetch.js"></script>
         <script>
+            let selectedCategory = "all";
+
             async function initializePage() {
                 await fetchAllData();
                 renderContent();
             }
+            document.getElementById("categoryFilter").addEventListener("change", function () {
+                selectedCategory = this.value;
+                renderContent();
+            });
             function renderContent() {
                 const container = document.querySelector(".concept-container");
                 container.innerHTML = "";
 
-                concepts.forEach(concept => {
+                let filteredConcepts = concepts.filter(concept => {
+                    if (selectedCategory === 'aiSystems') return concept.aiSystems;
+                    if (selectedCategory === 'logic') return concept.logic;
+                    if (selectedCategory === 'philosophy') return concept.philosophy;
+                    if (selectedCategory === 'hardware') return concept.hardware;
+                    return true;
+                });
+
+                filteredConcepts.forEach(concept => {
                     const conceptDiv = document.createElement("div");
                     conceptDiv.className = "concept";
 
