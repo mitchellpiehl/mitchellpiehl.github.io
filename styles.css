@@ -237,12 +237,12 @@ nav li ul li a:hover {
 
 }
 .p1 {
-    width: 15%;
+    width: 20%;
     margin: 10px;
     margin-right: 20px;
 }
 .p2 {
-    width: 85%;
+    width: 80%;
 }
 /* Eras */
 .eras {
@@ -345,12 +345,9 @@ nav li ul li a:hover {
 
 /* Media query for small screens */
 @media screen and (max-width: 810px) {
-    /* Hide regular navigation on small screens */
     #main-nav {
         display: none;
     }
-
-    /* Show mobile menu toggle button */
     #mobile-menu-toggle {
         display: block;
         position: fixed;
@@ -361,7 +358,6 @@ nav li ul li a:hover {
         border: none;
         cursor: pointer;
     }
-
     #mobile-menu-toggle span {
         display: block;
         width: 25px;
@@ -369,8 +365,6 @@ nav li ul li a:hover {
         background-color: #757373;
         margin: 5px 0;
     }
-
-    /* Show mobile menu when toggled */
     #main-nav.show-mobile {
         display: block;
         position: fixed;
@@ -382,7 +376,6 @@ nav li ul li a:hover {
         padding-top: 50px; /* Adjust as needed */
         z-index: 1000; /* Ensure it's above other content */
     }
-
     #main-nav.show-mobile a {
         display: block;
         padding: 20px;
@@ -390,6 +383,16 @@ nav li ul li a:hover {
         text-decoration: none;
         color: #f8f3f3;
         border-bottom: 1px solid #605e5e; /* Add a separator between links */
+    }
+    .grid {
+        display: block;
+    }
+    .p1 {
+        width: 80%;
+        margin: 10px;
+    }
+    .p2 {
+        width: 100%;
     }
 }
 .person a{
@@ -406,10 +409,8 @@ nav li ul li a:hover {
 .hover_text {
     display: block;
     width: 100%;
-    /* height: auto; */
-  }
-  
-  .overlay {
+} 
+.overlay {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -420,12 +421,12 @@ nav li ul li a:hover {
     opacity: 0;
     transition: 0.5s ease;
     background-color: var(--lightbackg);
-  }
-  .container:hover .overlay {
+}
+.container:hover .overlay {
     opacity: 0.85;
     border-radius: 10px;
-  }
-  .overlay p {
+}
+.overlay p {
     color: white;
     font-size: 1;
     position: absolute;
