@@ -90,8 +90,8 @@
                 detailContainer.innerHTML = `
                     <h2>${person.name}</h2>
                     <h3>${person.birth} - ${person.death}</h3>
-                    <img src="images/${person.image}" alt="${person.name}" style="width: 100%; max-width: 250px; height: auto; margin-bottom: 1em;" />
-                    <p>${person.long}</p>
+                    <p><img src="images/${person.image}" alt="${person.name}" class="img_fl"/>
+                    ${person.long}</p>
                     <p><strong>Image Source:</strong> <a href="${person.imageSource}" target="_blank">${person.sourceName}</a></p>
                 `;
             }
