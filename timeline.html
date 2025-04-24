@@ -110,7 +110,7 @@
         document.body.appendChild(modal);
 
         function showModal(event) {
-            currentEventIndex = yearSortedEvents.findIndex(e => e.year === event.year && e.short === event.short);
+            currentEventIndex = yearSortedEvents2.findIndex(e => e.year === event.year && e.short === event.short);
             modal.innerHTML = `
                 <button id="prev-event" style="float: left;">&#9664;</button>
                 <button id="next-event" style="float: right;">&#9654;</button>
@@ -138,11 +138,11 @@
         function navigateEvent(direction) {
             currentEventIndex += direction;
             if (currentEventIndex < 0) {
-                currentEventIndex = yearSortedEvents.length - 1;
-            } else if (currentEventIndex >= yearSortedEvents.length) {
+                currentEventIndex = yearSortedEvents2.length - 1;
+            } else if (currentEventIndex >= yearSortedEvents2.length) {
                 currentEventIndex = 0;
             }
-            showModal(yearSortedEvents[currentEventIndex]);
+            showModal(yearSortedEvents2[currentEventIndex]);
         }
         
         function hideModal() {
