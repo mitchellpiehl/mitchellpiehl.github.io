@@ -214,8 +214,13 @@ nav li ul li a:hover {
     overflow-y: auto;
     max-height: 80vh;
 }
+.concepts-list {
+    width: 40%;
+    overflow-y: auto;
+    max-height: 80vh;
+}
 
-.person-details {
+.person-details, .concept-details {
     width: 60%;
     position: sticky;
     top: 100px; /* adjust depending on your header height */
@@ -465,6 +470,7 @@ nav li ul li a:hover {
     margin-left: 0;
     border-radius: 10px;
     box-shadow: '2px 2px 10px rgba(0, 0, 0, 0.2)';
+    border: 2px solid #111;
 }
 
 @keyframes spin {

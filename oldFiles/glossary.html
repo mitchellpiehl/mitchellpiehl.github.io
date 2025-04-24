@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>AI History - Glossary</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="normalize.css" />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
+        </div>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a>
+                            <ul>
+                                <li><a href="timeline.html">Post-1900</a></li>
+                                <li><a href="timeline2.html">Pre-1900</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="papers.html">Papers</a></li>
+                        <li><a href="readings.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html">Online Resources</a></li>
+                        <li><a href="glossary.html" class="current">Glossary</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
+        <select id="categoryFilter">
+            <option value="all">All Concepts</option>
+            <option value="aiSystems">AI Systems</option>
+            <option value="logic">Logic/Mathematics</option>
+            <option value="hardware">Computer Development</option>
+            <option value="philosophy">Philosophy</option>
+        </select>
+        <div id="spinner" class="spinner" style="display: none;"></div>
+        <div class="concept-container">
+        </div>
+        <script src="fetch.js"></script>
+        <script>
+            let selectedCategory = "all";
+
+            async function initializePage() {
+                await fetchAllData();
+                renderContent();
+            }
+            document.getElementById("categoryFilter").addEventListener("change", function () {
+                selectedCategory = this.value;
+                renderContent();
+            });
+            function renderContent() {
+                const container = document.querySelector(".concept-container");
+                container.innerHTML = "";
+
+                let filteredConcepts = concepts.filter(concept => {
+                    if (selectedCategory === 'aiSystems') return concept.aiSystems;
+                    if (selectedCategory === 'logic') return concept.logic;
+                    if (selectedCategory === 'philosophy') return concept.philosophy;
+                    if (selectedCategory === 'hardware') return concept.hardware;
+                    return true;
+                });
+
+                filteredConcepts.forEach(concept => {
+                    const conceptDiv = document.createElement("div");
+                    conceptDiv.className = "concept";
+
+                    // Create the grid container
+                    const gridDiv = document.createElement("div");
+                    gridDiv.className = "grid";
+
+                    // Left image column
+                    const p1 = document.createElement("div");
+                    p1.className = "p1";
+
+                    const containerDiv = document.createElement("div");
+                    containerDiv.className = "container";
+
+                    const img = document.createElement("img");
+                    img.className = "image";
+                    img.src = `images/${concept.image}`;
+                    img.alt = concept.title;
+
+                    const overlay = document.createElement("div");
+                    overlay.className = "overlay";
+
+                    const sourcePara = document.createElement("p");
+                    sourcePara.className = "white";
+                    sourcePara.innerHTML = `Image Source: <a href="${concept.imageSource}" target="_blank">${concept.sourceName}</a>`;
+
+                    overlay.appendChild(sourcePara);
+                    containerDiv.appendChild(img);
+                    containerDiv.appendChild(overlay);
+                    p1.appendChild(containerDiv);
+
+                    // Right text column
+                    const p2 = document.createElement("div");
+                    p2.className = "p2";
+
+                    const nameEl = document.createElement("h2");
+                    nameEl.textContent = concept.title;
+
+                    const desc = document.createElement("p");
+                    desc.textContent = concept.description;
+
+                    p2.appendChild(nameEl);
+                    p2.appendChild(desc);
+
+                    // Append to grid
+                    gridDiv.appendChild(p1);
+                    gridDiv.appendChild(p2);
+
+                    // Link section
+                    const ul = document.createElement("ul");
+                    const li = document.createElement("li");
+                    const link = document.createElement("a");
+                    link.className = "link-button";
+                    link.href = ""; // add real link if available
+                    link.textContent = "View More";
+
+                    li.appendChild(link);
+                    ul.appendChild(li);
+
+                    // Combine everything
+                    conceptDiv.appendChild(gridDiv);
+                    conceptDiv.appendChild(ul);
+
+                    container.appendChild(conceptDiv);
+                });
+            }
+
+            initializePage();
+
+        </script>
+    </body>
+</html>

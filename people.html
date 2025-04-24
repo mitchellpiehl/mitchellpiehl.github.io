@@ -40,17 +40,16 @@
             </div>
         </div>
     <h2 class="center">Foundational People Throughout the History of AI</h2>
-    <h3 id="center">Click on any person to see more information!</h3>
-    <div id="spinner" class="spinner" style="display: none;"></div>
     <select id="categoryFilter">
         <option value="all">All People</option>
         <option value="aiEngineers">AI Engineers</option>
         <option value="philosophers">Philosophers</option>
         <option value="mathematicians">Mathematicians</option>
     </select>
+    <div id="spinner" class="spinner" style="display: none;"></div>
     <div class="main-content">
         <div class="people-list">
-            
+    
         </div>
         <div class="person-details">
             
@@ -95,78 +94,60 @@
                     <p><strong>Image Source:</strong> <a href="${person.imageSource}" target="_blank">${person.sourceName}</a></p>
                 `;
             }
-    
+            
+            const he = document.createElement("h3");
+            he.textContent ="Click on any person to see more information!";
+            listContainer.appendChild(he);
             // Create list items
             sortedPeople.forEach((person, index) => {
                 const personDiv = document.createElement("div");
                 personDiv.className = "person";
-    
+                
+                // Make the entire personDiv clickable
+                personDiv.addEventListener("click", () => {
+                    renderPersonDetail(person);
+                });
+
                 const gridDiv = document.createElement("div");
                 gridDiv.className = "grid";
-    
+
                 const p1 = document.createElement("div");
                 p1.className = "p1";
-    
+
                 const containerDiv = document.createElement("div");
                 containerDiv.className = "container";
-    
+
                 const img = document.createElement("img");
                 img.className = "image";
                 img.src = `images/${person.image}`;
                 img.alt = person.name;
-    
-                const overlay = document.createElement("div");
-                overlay.className = "overlay";
-    
-                const sourcePara = document.createElement("p");
-                sourcePara.className = "white";
-                sourcePara.innerHTML = `Image Source: <a href="${person.imageSource}" target="_blank">${person.sourceName}</a>`;
-    
-                overlay.appendChild(sourcePara);
+
                 containerDiv.appendChild(img);
-                containerDiv.appendChild(overlay);
                 p1.appendChild(containerDiv);
-    
+
                 const p2 = document.createElement("div");
                 p2.className = "p2";
-    
+
                 const nameEl = document.createElement("h2");
                 nameEl.textContent = person.name;
-    
+
                 const yearsEl = document.createElement("h3");
                 yearsEl.textContent = `${person.birth}-${person.death}`;
-    
+
                 const desc = document.createElement("p");
                 desc.textContent = person.short;
-    
+
                 p2.appendChild(nameEl);
                 p2.appendChild(yearsEl);
                 p2.appendChild(desc);
-    
+
                 gridDiv.appendChild(p1);
                 gridDiv.appendChild(p2);
-    
-                const ul = document.createElement("ul");
-                const li = document.createElement("li");
-                const link = document.createElement("a");
-                link.className = "link-button";
-                link.href = "#";
-                link.textContent = "View Person";
-    
-                link.addEventListener("click", e => {
-                    e.preventDefault();
-                    renderPersonDetail(person);
-                });
-    
-                li.appendChild(link);
-                ul.appendChild(li);
-    
+
                 personDiv.appendChild(gridDiv);
-                personDiv.appendChild(ul);
-    
+
                 listContainer.appendChild(personDiv);
-    
-                // Automatically show first person
+
                 if (index === 0) {
                     renderPersonDetail(person);
                 }
