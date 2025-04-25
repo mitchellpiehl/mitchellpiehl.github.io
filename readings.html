@@ -4,8 +4,8 @@
         <title>AI History - Further Readings</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="normalize.css" />
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
         <div id="header">
@@ -44,55 +44,7 @@
         <h3 id="center">**More technical based further readings are noted with asteriks**</h3>
         <div id="spinner" class="spinner" style="display: none;"></div>
         <div class="resource-container"></div>
-        <script src="fetch.js"></script>
-        <script>
-            async function initializePage() {
-                await fetchAllData();
-                renderContent();
-            }
-
-            function renderContent() {
-                const container = document.querySelector(".resource-container");
-                container.innerHTML = "";
-        
-                readings.forEach(event => {
-                    const linkDiv = document.createElement("div");
-                    linkDiv.className = "link";
-        
-                    const title = document.createElement("h2");
-                    title.textContent = event.title;
-
-                    const author = document.createElement("h3");
-                    author.textContent = "Author: " + event.author;
-
-                    const published = document.createElement("h3");
-                    published.textContent = "Published: " + event.published;
-        
-                    const description = document.createElement("p");
-                    description.textContent = event.description;
-        
-                    const ul = document.createElement("ul");
-                    const li = document.createElement("li");
-                    const a = document.createElement("a");
-                    a.className = "link-button";
-                    a.href = event.link;
-                    a.target = "_blank";
-                    a.textContent = "View Reading";
-        
-                    li.appendChild(a);
-                    ul.appendChild(li);
-        
-                    linkDiv.appendChild(title);
-                    linkDiv.appendChild(author);
-                    linkDiv.appendChild(published);
-                    linkDiv.appendChild(description);
-                    linkDiv.appendChild(ul);
-        
-                    container.appendChild(linkDiv);
-                });
-            }
-        
-            initializePage();
-        </script>
+        <script src="js/fetch.js"></script>
+        <script src="js/reading.js"></script>
     </body>
 </html>

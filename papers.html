@@ -1,94 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>AI History - Papers</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-    <div id="header">
-        <div class="hcol1">
-            <img src="images/StThomasLogo.png" class="img"/>
+    <head>
+        <title>AI History - Papers</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
         </div>
-        <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
-    </div>
-    <div id="header2">
-        <div>
-            <nav id="main-nav">
-                <ul id="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="timeline.html">Timeline</a>
-                        <ul>
-                            <li><a href="timeline.html">Post-1900</a></li>
-                            <li><a href="timeline2.html">Pre-1900</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="people.html">People</a></li>
-                    <li><a href="papers.html" class="current">Papers</a></li>
-                    <li><a href="readings.html">Further Readings</a></li>
-                    <li><a href="onlineResources.html">Online Resources</a></li>
-                    <li><a href="glossary.html">Glossary</a></li>
-                </ul>
-            </nav>
-            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html">Timeline</a>
+                            <ul>
+                                <li><a href="timeline.html">Post-1900</a></li>
+                                <li><a href="timeline2.html">Pre-1900</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="papers.html" class="current">Papers</a></li>
+                        <li><a href="readings.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html">Online Resources</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-    </div>
-    <h2 class="center">Foundational Papers Throughout the History of AI</h2>
-    <div id="spinner" class="spinner" style="display: none;"></div>
+        <h2 class="center">Foundational Papers Throughout the History of AI</h2>
+        <div id="spinner" class="spinner" style="display: none;"></div>
 
-    <div class="paper-container" id="paper-container"></div>
+        <div class="paper-container" id="paper-container"></div>
 
-    <script src="fetch.js"></script>
-
-    <script>
-        async function initializePage() {
-            await fetchAllData();
-            renderContent();
-        }
-        function renderContent() {
-            const container = document.querySelector(".paper-container");
-            container.innerHTML = "";
-    
-            papers.forEach(paper => {
-                const paperDiv = document.createElement("div");
-                paperDiv.className = "paper";
-    
-                const title = document.createElement("h2");
-                title.textContent = paper.title;
-
-                const author = document.createElement("h3");
-                author.textContent = "Author: " + paper.author;
-    
-                const description = document.createElement("p");
-                description.textContent = paper.description;
-    
-                const ul = document.createElement("ul");
-                const li = document.createElement("li");
-                const a = document.createElement("a");
-                a.className = "link-button";
-                a.href = paper.link;
-                a.target = "_blank";
-                a.textContent = "View Paper";
-    
-                li.appendChild(a);
-                ul.appendChild(li);
-    
-                paperDiv.appendChild(title);
-                paperDiv.appendChild(author);
-                paperDiv.appendChild(description);
-                paperDiv.appendChild(ul);
-    
-                container.appendChild(paperDiv);
-            });
-        }
-    
-        initializePage();
-    </script>
-</body>
+        <script src="js/fetch.js"></script>
+        <script src="js/papers.js"></script>
+    </body>
 </html>

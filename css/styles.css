@@ -6,7 +6,7 @@
 }
 @font-face {
     font-family: StThomas;
-    src: url(images/akzidenz-grotesk-bold.ttf);
+    src: url(../images/akzidenz-grotesk-bold.ttf);
 }
 .StThomas {
     font-family: StThomas;

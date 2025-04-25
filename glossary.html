@@ -4,8 +4,8 @@
         <title>AI History - Glossary</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="normalize.css" />
-        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
         <div id="header">
@@ -39,115 +39,20 @@
                 </button>
             </div>
         </div>
-    <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
-    <select id="categoryFilter">
-        <option value="all">All Concepts</option>
-        <option value="aiSystems">AI Systems</option>
-        <option value="logic">Logic/Mathematics</option>
-        <option value="hardware">Computer Development</option>
-        <option value="philosophy">Philosophy</option>
-    </select>
-    <div id="spinner" class="spinner" style="display: none;"></div>
-    <div class="main-content">
-        <div class="concepts-list">
-    
+        <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
+        <select id="categoryFilter">
+            <option value="all">All Concepts</option>
+            <option value="aiSystems">AI Systems</option>
+            <option value="logic">Logic/Mathematics</option>
+            <option value="hardware">Computer Development</option>
+            <option value="philosophy">Philosophy</option>
+        </select>
+        <div id="spinner" class="spinner" style="display: none;"></div>
+        <div class="main-content">
+            <div class="concepts-list"></div>
+            <div class="concept-details"></div>
         </div>
-        <div class="concept-details">
-            
-        </div>
-    </div>
-    <script src="fetch.js"></script>
-    <script>
-        let selectedCategory = "all";
-
-        async function initializePage() {
-            await fetchAllData();
-            renderContent();
-        }
-        document.getElementById("categoryFilter").addEventListener("change", function () {
-            selectedCategory = this.value;
-            renderContent();
-        });
-    
-        function renderContent() {
-            const listContainer = document.querySelector(".concepts-list");
-            const detailContainer = document.querySelector(".concept-details");
-            listContainer.innerHTML = "";
-            detailContainer.innerHTML = "";
-
-            let filteredConcepts = concepts.filter(concept => {
-                if (selectedCategory === 'aiSystems') return concept.aiSystems;
-                if (selectedCategory === 'logic') return concept.logic;
-                if (selectedCategory === 'philosophy') return concept.philosophy;
-                if (selectedCategory === 'hardware') return concept.hardware;
-                return true;
-            });
-    
-            function renderConceptDetail(concept) {
-                detailContainer.innerHTML = `
-                    <h2>${concept.title}</h2>
-                    <p><img src="images/${concept.image}" alt="${concept.title}" class="img_fl"/>
-                    ${concept.description}</p>
-                    <p><strong>Image Source:</strong> <a href="${concept.imageSource}" target="_blank">${concept.sourceName}</a></p>
-                `;
-            }
-            
-            const he = document.createElement("h3");
-            he.textContent ="Click on any concept to see more information!";
-            listContainer.appendChild(he);
-            // Create list items
-            filteredConcepts.forEach((concept, index) => {
-                const conceptDiv = document.createElement("div");
-                conceptDiv.className = "concept";
-                
-                // Make the entire personDiv clickable
-                conceptDiv.addEventListener("click", () => {
-                    renderConceptDetail(concept);
-                });
-
-                const gridDiv = document.createElement("div");
-                gridDiv.className = "grid";
-
-                const p1 = document.createElement("div");
-                p1.className = "p1";
-
-                const containerDiv = document.createElement("div");
-                containerDiv.className = "container";
-
-                const img = document.createElement("img");
-                img.className = "image";
-                img.src = `images/${concept.image}`;
-                img.alt = concept.title;
-
-                containerDiv.appendChild(img);
-                p1.appendChild(containerDiv);
-
-                const p2 = document.createElement("div");
-                p2.className = "p2";
-
-                const nameEl = document.createElement("h2");
-                nameEl.textContent = concept.title;
-
-                const desc = document.createElement("p");
-                desc.textContent = concept.description;
-
-                p2.appendChild(nameEl);
-                p2.appendChild(desc);
-
-                gridDiv.appendChild(p1);
-                gridDiv.appendChild(p2);
-
-                conceptDiv.appendChild(gridDiv);
-
-                listContainer.appendChild(conceptDiv);
-
-                if (index === 0) {
-                    renderConceptDetail(concept);
-                }
-            });
-        }
-    
-        initializePage();
-    </script>
-</body>
+        <script src="js/fetch.js"></script>
+        <script src="js/glossary.js"></script>
+    </body>
 </html>
