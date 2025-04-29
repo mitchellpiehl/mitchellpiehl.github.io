@@ -6,7 +6,7 @@ async function initializePage() {
 const timeline = document.getElementById('timeline');
 const eraContainer = document.getElementById('eras');
 
-let zoomLevel = 0.5; // Start smaller since we need to fit centuries
+let zoomLevel = 0.5;
 let zoomTarget = 1.5;
 let zoomStep = 0.1;
 let currentEventIndex = 0;

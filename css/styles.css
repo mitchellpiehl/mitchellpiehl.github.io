@@ -11,7 +11,6 @@
 .StThomas {
     font-family: StThomas;
 }
-/* General Styles */
 body {
     font-family: var(--bodyfont);
     margin: 0;
@@ -27,7 +26,6 @@ h1 {
     margin-top: 10px;
     margin-bottom: 0;
 }
-/* Header */
 #header2{
     padding-bottom: 10px;
     background: var(--backg);
@@ -87,13 +85,11 @@ ul li{
 ul {
     padding: 0;
 }
-/* Navigation */
 nav {
     display: flex;
     justify-content: center;
     margin-bottom: 0;
 }
-
 nav ul #main-nav {
     list-style: none;
     padding: 0;
@@ -102,12 +98,10 @@ nav ul #main-nav {
     margin-bottom: 0;
     margin-top: 4px;
 }
-
 nav ul li{
     display: inline;
     margin-bottom: 0;
 }
-
 nav ul li a {
     text-decoration: none;
     color: white;
@@ -118,7 +112,6 @@ nav ul li a {
     margin-bottom: 0;
     margin-top: 0;
 }
-
 nav ul li a:hover, #nav li a.current {
     background: rgba(255, 255, 255, 0.2);
     margin-bottom: 0;
@@ -154,7 +147,6 @@ nav li ul li a {
 nav li ul li a:hover {
     background-color: #34084d;
 }
-/* Description */
 .description {
     text-align: center;
     margin: 20px;
@@ -162,8 +154,6 @@ nav li ul li a:hover {
     color: #444;
     margin-top: 10px;
 }
-
-/* Timeline Container */
 .timeline-container {
     display: flex;
     justify-content: center;
@@ -174,7 +164,6 @@ nav li ul li a:hover {
     position: relative;
     scroll-behavior: smooth;
 }
-
 .paper-container, .resource-container, .link-container, .home-container, .concept-container{
     width: 90%;
     margin-left: 5%;
@@ -208,18 +197,11 @@ nav li ul li a:hover {
     gap: 2em;
     align-items: flex-start;
 }
-
-.people-list {
+.people-list, .concepts-list {
     width: 40%;
     overflow-y: auto;
     max-height: 80vh;
 }
-.concepts-list {
-    width: 40%;
-    overflow-y: auto;
-    max-height: 80vh;
-}
-
 .person-details, .concept-details {
     width: 60%;
     position: sticky;
@@ -239,7 +221,6 @@ nav li ul li a:hover {
     width: 100%;
     border-radius: 10px;
     border: 2px solid #111;
-
 }
 .p1 {
     width: 20%;
@@ -249,7 +230,6 @@ nav li ul li a:hover {
 .p2 {
     width: 80%;
 }
-/* Eras */
 .eras {
     width: 100px;
     padding-right: 30px;
@@ -265,7 +245,6 @@ nav li ul li a:hover {
     background: rgba(50, 115, 220, 0.8);
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
-/* Timeline */
 .timeline {
     position: relative;
     width: 6px;
@@ -274,7 +253,6 @@ nav li ul li a:hover {
     border-radius: 3px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
-/* Events */
 .event {
     position: absolute;
     left: 30px;
@@ -293,7 +271,6 @@ nav li ul li a:hover {
     z-index: 10;
     border-left: 5px solid #ff7f50;
 }
-/* Zoom Controls */
 .zoom-controls {
     position: fixed;
     bottom: 20px;
@@ -306,7 +283,6 @@ nav li ul li a:hover {
     border-radius: 50px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
-/* Year Labels */
 .year-label {
     position: absolute;
     left: -60px;
@@ -318,7 +294,6 @@ nav li ul li a:hover {
     border-radius: 4px;
     box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
 }
-/* Filter Dropdown */
 #categoryFilter {
     display: block;
     margin: 10px auto;
@@ -332,23 +307,18 @@ nav li ul li a:hover {
     transition: all 0.3s ease;
     cursor: pointer;
 }
-
 #categoryFilter:hover {
     border-color: #ff7f50;
     box-shadow: 2px 2px 10px rgba(255, 127, 80, 0.5);
 }
-
 #categoryFilter:focus {
     outline: none;
     border-color: #182848;
     box-shadow: 2px 2px 10px rgba(24, 40, 72, 0.5);
 }
-
 #mobile-menu-toggle {
     display: none;
 }
-
-/* Media query for small screens */
 @media screen and (max-width: 810px) {
     #main-nav {
         display: none;
@@ -379,7 +349,7 @@ nav li ul li a:hover {
         height: 100%;
         background-color: var(--backg);
         padding-top: 50px; /* Adjust as needed */
-        z-index: 1000; /* Ensure it's above other content */
+        z-index: 1000;
     }
     #main-nav.show-mobile a {
         display: block;
@@ -387,7 +357,7 @@ nav li ul li a:hover {
         text-align: left;
         text-decoration: none;
         color: #f8f3f3;
-        border-bottom: 1px solid #605e5e; /* Add a separator between links */
+        border-bottom: 1px solid #605e5e;
     }
     .grid {
         display: block;
@@ -458,7 +428,6 @@ nav li ul li a:hover {
     animation: spin 1s linear infinite;
     margin: 2rem auto;
 }
-
 .img_fl {
     width: 33.33%;
     float: left;
@@ -472,7 +441,6 @@ nav li ul li a:hover {
     box-shadow: '2px 2px 10px rgba(0, 0, 0, 0.2)';
     border: 2px solid #111;
 }
-
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
