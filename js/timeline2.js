@@ -17,11 +17,12 @@ const maxZoom = 2;
 
 const modal = document.createElement('div');
 modal.classList.add('modal');
-modal.style.position = 'fixed';
+modal.style.position = 'absolute';
 modal.style.left = '10px';
-modal.style.top = '50%';
-modal.style.transform = 'translateY(-50%)';
-modal.style.width = '300px';
+modal.style.top = '300px';
+modal.style.transform = '';
+modal.style.width = '25%';
+modal.style.minWidth = '150px';
 modal.style.background = 'white';
 modal.style.padding = '10px';
 modal.style.boxShadow = '2px 2px 10px rgba(0, 0, 0, 0.2)';
@@ -29,6 +30,8 @@ modal.style.borderRadius = '10px';
 modal.style.border = '1px solid #ccc';
 modal.style.display = 'none';
 modal.style.zIndex = '1000';
+modal.style.maxHeight = '60%'; 
+modal.style.overflowY = 'auto';
 document.body.appendChild(modal);
 
 function showModal(event) {
@@ -107,13 +110,13 @@ function renderTimeline() {
         let leftOffset = 20;
         let eventTop = (event.year - 1400) * 10 * zoomLevel;
         let maxOffset = 500;
-        let spacing = 40;
+        let spacing = 70;
 
         while (occupiedPositions.some(pos => Math.abs(pos.top - eventTop) < spacing && pos.left === leftOffset) && leftOffset < maxOffset) {
             leftOffset += 300;
         }
 
-        if (leftOffset < maxOffset || zoomLevel > 2) {
+        if (leftOffset < maxOffset || zoomLevel > 1.5) {
             occupiedPositions.push({ top: eventTop, left: leftOffset });
             eventElement.style.left = `${leftOffset}px`;
             eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;

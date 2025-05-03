@@ -156,7 +156,8 @@ nav li ul li a:hover {
 }
 .timeline-container {
     display: flex;
-    justify-content: center;
+    justify-content:left;
+    margin-left: 30%;
     align-items: flex-start;
     height: 80vh;
     overflow-y: auto;
