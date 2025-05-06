@@ -157,7 +157,7 @@ nav li ul li a:hover {
 .timeline-container {
     display: flex;
     justify-content:left;
-    margin-left: 30%;
+    margin-left: 10px;
     align-items: flex-start;
     height: 80vh;
     overflow-y: auto;
@@ -283,6 +283,7 @@ nav li ul li a:hover {
     padding: 8px 16px;
     border-radius: 50px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    z-index: 10000;
 }
 .year-label {
     position: absolute;

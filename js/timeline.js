@@ -26,10 +26,10 @@ const maxZoom = 10;
 const modal = document.createElement('div');
 modal.classList.add('modal');
 modal.style.position = 'absolute';
-modal.style.left = '10px';
+modal.style.right = '10px';
 modal.style.top = '300px';
 modal.style.transform = '';
-modal.style.width = '25%';
+modal.style.width = '30%';
 modal.style.minWidth = '150px';
 modal.style.background = 'white';
 modal.style.padding = '10px';
@@ -132,6 +132,7 @@ function renderTimeline() {
         timeline.appendChild(yearLabel);
     }
 
+    filteredEvents = events.filter(event => event.year > 1940);
     let occupiedPositions = [];
     filteredEvents.sort((a, b) => b.priority - a.priority);
     
