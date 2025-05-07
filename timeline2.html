@@ -7,53 +7,69 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-    <div id="header">
-        <div class="hcol1">
-            <img src="images/StThomasLogo.png" class="img"/>
+    <body>
+        <div id="header">
+            <div class="hcol1">
+                <img src="images/StThomasLogo.png" class="img"/>
+            </div>
+            <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
         </div>
-        <div class="hcol2"><h1>The History of Artificial Intelligence</h1></div>
-    </div>
-    <div id="header2">
-        <div>
-            <nav id="main-nav">
-                <ul id="nav">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="timeline.html" class="current">Timeline</a>
-                        <ul>
-                            <li><a href="timeline.html">Post-1950</a></li>
-                            <li><a href="timeline2.html">Pre-1950</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="people.html">People</a></li>
-                    <li><a href="papers.html">Papers</a></li>
-                    <li><a href="readings.html">Further Readings</a></li>
-                    <li><a href="onlineResources.html">Online Resources</a></li>
-                    <li><a href="glossary.html">Glossary</a></li>
-                </ul>
-            </nav>
-            <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <div id="header2">
+            <div>
+                <nav id="main-nav">
+                    <ul id="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="timeline.html" class="current">Timeline</a>
+                            <ul>
+                                <li><a href="timeline.html">Post-1950</a></li>
+                                <li><a href="timeline2.html">Pre-1950</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="people.html">People</a></li>
+                        <li><a href="papers.html">Papers</a></li>
+                        <li><a href="readings.html">Further Readings</a></li>
+                        <li><a href="onlineResources.html">Online Resources</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                    </ul>
+                </nav>
+                <button id="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-    </div>
-    <h1 class="center">Pre-1950 Timeline</h1>
-    <div class="description">Explore the early roots and foundational ideas leading up to AI. This timeline spans several centuries of innovation.</div>
-    
-    <ul>
-        <li>
-            <a class="link-button" href="timeline.html">View Post-1950 Timeline</a>
-        </li>
-    </ul>
-    <div id="spinner" class="spinner" style="display: none;"></div>
-    <div class="timeline-container">
-        <div class="eras" id="eras"></div>
-        <div class="timeline" id="timeline"></div>
-    </div>
+        <h1 class="center">Pre-1950 Timeline</h1>
+        <div class="description">Explore the early roots and foundational ideas leading up to AI. This timeline spans several centuries of innovation.</div>
+        
+        <ul>
+            <li>
+                <a class="link-button" href="timeline.html">View Post-1950 Timeline</a>
+            </li>
+        </ul>
+        <div id="spinner" class="spinner" style="display: none;"></div>
+        <div class="timeline-container">
+            <div class="eras" id="eras"></div>
+            <div class="timeline" id="timeline"></div>
+        </div>
 
-    <script src="js/fetch.js"></script>
-    <script src="js/timeline2.js"></script>
-</body>
+        <script src="js/fetch.js"></script>
+        <script src="js/timeline2.js"></script>
+    </body>
+    <div id="footer">
+        <div class="fcol1">
+            <p>Page References:</p>
+            <ul id="references">
+                <li><a href="blah">Reference 1</a></li>
+            </ul>
+        </div>
+        <div class="fcol2">
+            <p>© This website was created by 
+                <a href="https://pieh6361.dima358.com/portfolio" target="_blank" rel="noopener noreferrer">
+                    Mitchell Piehl
+                </a> 
+                for a course at the University of St. Thomas.
+            </p>
+        </div>
+    </div>
 </html>
