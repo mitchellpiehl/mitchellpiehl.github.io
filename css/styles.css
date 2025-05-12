@@ -491,11 +491,6 @@ nav li ul li a:hover {
 .fcol2 {
     text-align: right;
 }
-#references {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
 #references li::before {
     content: "• ";
     color: #ccc;

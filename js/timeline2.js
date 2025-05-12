@@ -1,6 +1,7 @@
 async function initializePage() {
     await fetchAllData();
     renderTimeline();
+    renderTimeline2();
 }
 
 const timeline = document.getElementById('timeline');
@@ -167,6 +168,85 @@ function renderTimeline() {
     });
 }
 
+function renderTimeline2() {
+    const timeline = document.getElementById('ancient-timeline');
+    const eraContainer = document.getElementById('ancient-eras');
+    timeline.innerHTML = '';
+    eraContainer.innerHTML = '';
+
+    const filteredEvents = events.filter(event => event.year < 500);
+
+    for (let year = -400; year <= -300; year += 50) {
+        const yearLabel = document.createElement('div');
+        yearLabel.classList.add('year-label');
+        yearLabel.style.top = `${(year + 400) * 10 * zoomLevel}px`;
+        yearLabel.innerText = year;
+        timeline.appendChild(yearLabel);
+    }
+
+    let occupiedPositions = [];
+
+    filteredEvents.sort((a, b) => b.priority - a.priority);
+
+    filteredEvents.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.classList.add('event');
+        eventElement.style.top = `${(event.year + 400) * 10 * zoomLevel}px`;
+
+        let leftOffset = 20;
+        let eventTop = (event.year - 300) * 10 * zoomLevel;
+        let maxOffset = 500;
+        let spacing = 70;
+
+        while (occupiedPositions.some(pos => Math.abs(pos.top - eventTop) < spacing && pos.left === leftOffset) && leftOffset < maxOffset) {
+            leftOffset += 300;
+        }
+
+        if (leftOffset < maxOffset || zoomLevel > 1.5) {
+            occupiedPositions.push({ top: eventTop, left: leftOffset });
+            eventElement.style.left = `${leftOffset}px`;
+            eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;
+            
+            eventElement.addEventListener('mouseover', () => {
+                eventElement.innerHTML = `<strong>${event.year}</strong><br>${event.long}`;
+            });
+            
+            eventElement.addEventListener('mouseout', () => {
+                eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;
+            });
+            
+            eventElement.addEventListener('click', () => {
+                showModal(event);
+            });
+            
+            timeline.appendChild(eventElement);
+        }
+        const startYear = -400;
+        const endYear = -300;
+        const totalYears = endYear - startYear;
+        const dynamicHeight = totalYears * 10.1 * zoomLevel;
+
+        timeline.style.height = `${dynamicHeight}px`;
+        eraContainer.style.height = `${dynamicHeight}px`;
+    });
+
+    const eras = [
+        { name: "Ancient (BCE)", start: -400, end: -300, color: "#cccccc" }
+    ];
+
+    eras.forEach(era => {
+        const eraElement = document.createElement('div');
+        eraElement.classList.add('era');
+        eraElement.style.top = `${(era.start + 400) * 10 * zoomLevel}px`;
+        eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
+        eraElement.style.backgroundColor = era.color;
+        eraElement.style.width = '80%';
+        eraElement.style.position = 'absolute';
+        eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
+        eraContainer.appendChild(eraElement);
+    });
+}
+
 function animateZoom() {
     if (Math.abs(zoomLevel - zoomTarget) > 0.01) {
         zoomLevel += (zoomTarget - zoomLevel) * 0.2;
@@ -200,5 +280,16 @@ zoomSlider.addEventListener('input', (e) => {
     animateZoom();
 });
 document.body.appendChild(zoomSlider);
+
+document.getElementById("show-ancient").addEventListener("click", function(event) {
+    const timeline = document.querySelector(".ancient-timeline");
+    if (timeline.style.display === "none" || timeline.style.display === "") {
+        document.querySelector(".ancient-timeline").style.display = "block";
+        this.textContent = "Hide Ancient Timeline";
+    } else {
+        document.querySelector(".ancient-timeline").style.display = "none";
+        this.textContent = "Display Ancient Timeline";
+    }
+});
 
 initializePage();
