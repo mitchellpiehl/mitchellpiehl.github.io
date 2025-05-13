@@ -26,7 +26,7 @@ const maxZoom = 10;
 const modal = document.createElement('div');
 modal.classList.add('modal');
 modal.style.position = 'absolute';
-modal.style.right = '10px';
+modal.style.right = '5%';
 modal.style.top = '300px';
 modal.style.transform = '';
 modal.style.width = '30%';
