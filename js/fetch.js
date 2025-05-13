@@ -58,7 +58,8 @@ async function fetchAllData() {
                     title: r.Title,
                     description: r.Description,
                     link: r.Link,
-                    linkName: r.LinkName
+                    linkName: r.LinkName,
+                    embedLink: r.EmbedLink || ""
                 }))
             ),
             fetchWithCache(SHEET_URL_READINGS, "cachedReadings", 10, data =>

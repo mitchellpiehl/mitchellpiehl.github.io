@@ -16,6 +16,7 @@ function renderContent() {
 
         const description = document.createElement("p");
         description.textContent = event.description;
+        
 
         const ul = document.createElement("ul");
         const li = document.createElement("li");
@@ -30,6 +31,12 @@ function renderContent() {
 
         linkDiv.appendChild(title);
         linkDiv.appendChild(description);
+        if (event.embedLink != "") {
+            const embedded = document.createElement("iframe");
+            embedded.src = event.embedLink;
+            embedded.class = 'youtube';
+            linkDiv.appendChild(embedded);
+        }
         linkDiv.appendChild(ul);
 
         container.appendChild(linkDiv);
