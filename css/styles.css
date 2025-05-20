@@ -170,7 +170,7 @@ nav li ul li a:hover {
     margin-left: 5%;
     margin-top: 1em;
 }
-.resource, .person, .link, .concept {
+.resource, .person, .link, .concept, .paper {
     border: 2px solid #111;
     border-radius: 10px;
     padding: 5px;
@@ -183,13 +183,10 @@ nav li ul li a:hover {
     margin-top: 1em;
     z-index: 10000;
 }
-.paper {
-    border: 2px solid #111;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: #ffffff;
-    margin-bottom: 2em;
+.person:hover, .concept:hover{
+    border: 2px solid var(--lightbackg);
 }
+
 .main-content {
     display: flex;
     flex-direction: row;
