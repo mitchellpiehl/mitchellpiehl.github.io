@@ -1,26 +1,29 @@
 async function initializePage() {
     await fetchAllData();
     renderTimeline();
-    renderTimeline2();
 }
+
+const eras = [
+    { name: "Deep Learning Boom", start: 2000, end: 2025, color: "#32CD32" }
+];
 
 const timeline = document.getElementById('timeline');
 const eraContainer = document.getElementById('eras');
 
-let zoomLevel = 0.5;
-let zoomTarget = 1.5;
+
+let zoomLevel = 3;
+let zoomTarget = 1;
 let zoomStep = 0.1;
 let currentEventIndex = 0;
 let yearSortedEvents = [];
-let yearSortedEvents2 = [];
-const minZoom = 0.1;
-const maxZoom = 2;
+const minZoom = 1;
+const maxZoom = 10;
 
 const modal = document.createElement('div');
 modal.classList.add('modal');
 modal.style.position = 'absolute';
 modal.style.right = '5%';
-modal.style.top = '350px';
+modal.style.top = '300px';
 modal.style.transform = '';
 modal.style.width = '30%';
 modal.style.minWidth = '150px';
@@ -53,7 +56,7 @@ function showModal(event) {
 
     document.getElementById("prev-event").addEventListener("click", (e) => {
         e.stopPropagation();
-        navigateEvent(-1);
+        navigateEvent(-1)
     });
     document.getElementById("next-event").addEventListener('click', (e) => {
         e.stopPropagation();
@@ -81,44 +84,69 @@ document.addEventListener('click', (e) => {
     }
 });
 
+document.getElementById('categoryFilter').addEventListener('change', renderTimeline);
+
 function renderTimeline() {
+    const selectedCategory = document.getElementById('categoryFilter').value;
     const timeline = document.getElementById('timeline');
     const eraContainer = document.getElementById('eras');
     timeline.innerHTML = '';
     eraContainer.innerHTML = '';
 
-    const filteredEvents = events.filter(event => event.year < 1900);
+    let filteredEvents = events.filter(event => {
+        if (selectedCategory === 'NeuralNets') return event.NeuralNets;
+        if (selectedCategory === 'SymbolicAI') return event.SymbolicAI;
+        if (selectedCategory === 'GenerativeAI') return event.GenerativeAI;
+        if (selectedCategory === 'NLP') return event.NLP;
+        if (selectedCategory === 'ImageProcessing') return event.ImageProcessing;
+        if (selectedCategory === 'FoundationalIssues') return event.FoundationalIssues;
+        if (selectedCategory === 'Milestones') return event.Milestones;
+        if (selectedCategory === 'TechnologicalAdvancements') return event.TechnologicalAdvancements;
+        if (selectedCategory === 'Hardware') return event.Hardware;
+        return true;
+    });
     yearSortedEvents = [...filteredEvents].sort((a, b) => a.year - b.year);
-    yearSortedEvents2 = [...yearSortedEvents].filter(event => event.year < 1900);
-    yearSortedEvents2 = [...yearSortedEvents2].filter(event => event.year > 1600);
+    yearSortedEvents2 = [...yearSortedEvents].filter(event => event.year > 2000);
 
-    for (let year = 1600; year <= 1900; year += 50) {
+    eras.forEach(era => {
+        const eraElement = document.createElement('div');
+        eraElement.classList.add('era');
+        eraElement.style.top = `${(era.start - 2000) * 10 * zoomLevel}px`;
+        eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
+        eraElement.style.backgroundColor = era.color;
+        eraElement.style.width = '80%';
+        eraElement.style.position = 'absolute';
+        eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
+        eraContainer.appendChild(eraElement);
+    });
+
+    for (let year = 2000; year <= 2025; year += 5) {
         const yearLabel = document.createElement('div');
         yearLabel.classList.add('year-label');
-        yearLabel.style.top = `${(year - 1600) * 10 * zoomLevel}px`;
+        yearLabel.style.top = `${(year - 2000) * 10 * zoomLevel}px`;
         yearLabel.innerText = year;
         timeline.appendChild(yearLabel);
     }
 
+    filteredEvents = filteredEvents.filter(event => event.year > 2000);
     let occupiedPositions = [];
-
     filteredEvents.sort((a, b) => b.priority - a.priority);
-
+    
     filteredEvents.forEach(event => {
         const eventElement = document.createElement('div');
         eventElement.classList.add('event');
-        eventElement.style.top = `${(event.year - 1600) * 10 * zoomLevel}px`;
-
+        eventElement.style.top = `${(event.year - 2000) * 10 * zoomLevel}px`;
+        
         let leftOffset = 20;
-        let eventTop = (event.year - 1600) * 10 * zoomLevel;
-        let maxOffset = 500;
+        let eventTop = (event.year - 2000) * 10 * zoomLevel;
+        let maxOffset = 400;
         let spacing = 70;
-
+        
         while (occupiedPositions.some(pos => Math.abs(pos.top - eventTop) < spacing && pos.left === leftOffset) && leftOffset < maxOffset) {
             leftOffset += 300;
         }
-
-        if (leftOffset < maxOffset || zoomLevel > 1.5) {
+        
+        if (leftOffset < maxOffset || zoomLevel > 7) {
             occupiedPositions.push({ top: eventTop, left: leftOffset });
             eventElement.style.left = `${leftOffset}px`;
             eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;
@@ -137,34 +165,15 @@ function renderTimeline() {
             
             timeline.appendChild(eventElement);
         }
-        const startYear = 1600;
-        const endYear = 1900;
-        const totalYears = endYear - startYear;
-        const dynamicHeight = totalYears * 10.1 * zoomLevel;
-
-        timeline.style.height = `${dynamicHeight}px`;
-        eraContainer.style.height = `${dynamicHeight}px`;
     });
+    showModal(yearSortedEvents2[0]);
+    const startYear = 2000;
+    const endYear = 2030;
+    const totalYears = endYear - startYear;
+    const dynamicHeight = totalYears * 10.1 * zoomLevel;
 
-    if (yearSortedEvents2.length > 0) {
-        showModal(yearSortedEvents2[0]);
-    }
-    const eras = [
-        { name: "Enlightenment", start: 1600, end: 1800, color: "#bfdbfe" },
-        { name: "Industrial Revolution", start: 1800, end: 1900, color: "#c7d2fe" }
-    ];
-
-    eras.forEach(era => {
-        const eraElement = document.createElement('div');
-        eraElement.classList.add('era');
-        eraElement.style.top = `${(era.start - 1600) * 10 * zoomLevel}px`;
-        eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
-        eraElement.style.backgroundColor = era.color;
-        eraElement.style.width = '80%';
-        eraElement.style.position = 'absolute';
-        eraElement.innerText = `${era.name} (${era.start}-${era.end})`;
-        eraContainer.appendChild(eraElement);
-    });
+    timeline.style.height = `${dynamicHeight}px`;
+    eraContainer.style.height = `${dynamicHeight}px`;
 }
 
 function animateZoom() {
@@ -175,12 +184,12 @@ function animateZoom() {
     }
 }
 
-function zoomIn() {
+function zoomIn() { 
     zoomTarget = Math.min(zoomTarget * 1.2, maxZoom);
     animateZoom();
 }
 
-function zoomOut() {
+function zoomOut() { 
     zoomTarget = Math.max(zoomTarget / 1.2, minZoom);
     animateZoom();
 }
@@ -200,6 +209,5 @@ zoomSlider.addEventListener('input', (e) => {
     animateZoom();
 });
 document.body.appendChild(zoomSlider);
-
 
 initializePage();

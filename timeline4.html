@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>AI History - Glossary</title>
-        <link rel="icon" href="images/stThomasIcon.png" type="image/png">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/normalize.css" />
-        <link rel="stylesheet" href="css/styles.css" />
-    </head>
+<head>
+    <title>AI History - Timeline</title>
+    <link rel="icon" href="images/stThomasIcon.png" type="image/png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
     <body>
         <div id="header">
             <div class="hcol1">
@@ -20,7 +20,7 @@
                 <nav id="main-nav">
                     <ul id="nav">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="timeline.html">Timeline</a>
+                        <li><a href="timeline.html" class="current">Timeline</a>
                             <ul>
                                 <li><a href="timeline3.html">Post-2000</a></li>
                                 <li><a href="timeline.html">1900-2000</a></li>
@@ -29,7 +29,7 @@
                             </ul>
                         </li>
                         <li><a href="people.html">People</a></li>
-                        <li><a href="glossary.html" class="current">Glossary</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
                         <li><a href="onlineResources.html">Online Resources</a></li>
                         <li><a href="readings.html">Further Readings</a></li>
                         <li><a href="papers.html">Academic Papers</a></li>
@@ -42,27 +42,37 @@
                 </button>
             </div>
         </div>
-        <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
-        <select id="categoryFilter">
-            <option value="all">All Concepts</option>
-            <option value="aiSystems">AI Systems</option>
-            <option value="logic">Logic/Mathematics</option>
-            <option value="hardware">Computer Development</option>
-            <option value="philosophy">Philosophy</option>
-        </select>
+        
+        <h1 class="center">Ancient Pre 300 BCE Timeline</h1>
+        <div class="description">Explore the early roots and foundational ideas leading up to AI. This timeline spans several centuries of innovation.</div> 
+        <ul>
+            <li>
+                <a class="link-button" href="timeline3.html">View Post-2000 Timeline</a>
+                <a class="link-button" href="timeline.html">View 1900-2000 Timeline</a>
+                <a class="link-button" href="timeline2.html">View Pre-1900 Timeline</a>
+                <a class="link-button2" href="timeline4.html">Currently Viewing Ancient Timeline</a>
+            </li>
+        </ul>
         <div id="spinner" class="spinner" style="display: none;"></div>
-        <div class="main-content">
-            <div class="concepts-list"></div>
-            <div class="concept-details"></div>
+
+        <div class="ancient-timeline">
+            <div class="timeline-container">
+                <div class="eras" id="ancient-eras"></div>
+                <div class="timeline" id="ancient-timeline"></div>
+            </div>
         </div>
+
+
         <script src="js/fetch.js"></script>
-        <script src="js/glossary.js"></script>
+        <script src="js/timeline4.js"></script>
     </body>
     <div id="footer">
         <div class="fcol1">
-            <p>Page References:</p>
+            <p>Page Sources:</p>
             <ul id="references">
-                <li><a href="https://www.britannica.com/technology/robotics">Britannica</a></li>
+                <li><a href="https://plato.stanford.edu/entries/artificial-intelligence/" target="_blank">Stanford Encyclopedia of Philosophy</a></li>
+                <li><a href="https://oecs.mit.edu/" target="_blank">Open Encyclopedia of Cognitive Science</a></li>
+                <li><a href="https://books.google.com/books?id=ig8mHog30X0C&printsec=frontcover&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false" target="_blank">Artificial Intelligence Critical Concepts</a></li>
             </ul>
         </div>
         <div class="fcol2">

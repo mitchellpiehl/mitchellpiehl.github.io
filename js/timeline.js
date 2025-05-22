@@ -7,8 +7,7 @@ const eras = [
     { name: "Golden Age", start: 1956, end: 1974, color: "#FFD700" },
     { name: "First AI Winter", start: 1974, end: 1980, color: "#ADD8E6" },
     { name: "Expert Systems Era", start: 1980, end: 1990, color: "#FFA500" },
-    { name: "Second AI Winter", start: 1990, end: 2000, color: "#00008B" },
-    { name: "Deep Learning Boom", start: 2000, end: 2025, color: "#32CD32" }
+    { name: "Second AI Winter", start: 1990, end: 2000, color: "#00008B" }
 ];
 
 const timeline = document.getElementById('timeline');
@@ -96,7 +95,6 @@ function renderTimeline() {
     const eraContainer = document.getElementById('eras');
     timeline.innerHTML = '';
     eraContainer.innerHTML = '';
-
     let filteredEvents = events.filter(event => {
         if (selectedCategory === 'NeuralNets') return event.NeuralNets;
         if (selectedCategory === 'SymbolicAI') return event.SymbolicAI;
@@ -110,12 +108,13 @@ function renderTimeline() {
         return true;
     });
     yearSortedEvents = [...filteredEvents].sort((a, b) => a.year - b.year);
-    yearSortedEvents2 = [...yearSortedEvents].filter(event => event.year > 1940);
+    yearSortedEvents2 = [...yearSortedEvents].filter(event => event.year > 1899);
+    yearSortedEvents2 = [...yearSortedEvents2].filter(event => event.year < 2001);
 
     eras.forEach(era => {
         const eraElement = document.createElement('div');
         eraElement.classList.add('era');
-        eraElement.style.top = `${(era.start - 1940) * 10 * zoomLevel}px`;
+        eraElement.style.top = `${(era.start - 1900) * 10 * zoomLevel}px`;
         eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
         eraElement.style.backgroundColor = era.color;
         eraElement.style.width = '80%';
@@ -124,25 +123,26 @@ function renderTimeline() {
         eraContainer.appendChild(eraElement);
     });
 
-    for (let year = 1940; year <= 2025; year += 5) {
+    for (let year = 1900; year <= 2000; year += 5) {
         const yearLabel = document.createElement('div');
         yearLabel.classList.add('year-label');
-        yearLabel.style.top = `${(year - 1940) * 10 * zoomLevel}px`;
+        yearLabel.style.top = `${(year - 1900) * 10 * zoomLevel}px`;
         yearLabel.innerText = year;
         timeline.appendChild(yearLabel);
     }
 
-    filteredEvents = events.filter(event => event.year > 1940);
+    filteredEvents = filteredEvents.filter(event => event.year > 1900);
+    filteredEvents = filteredEvents.filter(event => event.year < 2001);
     let occupiedPositions = [];
     filteredEvents.sort((a, b) => b.priority - a.priority);
     
     filteredEvents.forEach(event => {
         const eventElement = document.createElement('div');
         eventElement.classList.add('event');
-        eventElement.style.top = `${(event.year - 1940) * 10 * zoomLevel}px`;
+        eventElement.style.top = `${(event.year - 1900) * 10 * zoomLevel}px`;
         
         let leftOffset = 20;
-        let eventTop = (event.year - 1940) * 10 * zoomLevel;
+        let eventTop = (event.year - 1900) * 10 * zoomLevel;
         let maxOffset = 400;
         let spacing = 70;
         
@@ -171,8 +171,8 @@ function renderTimeline() {
         }
     });
     showModal(yearSortedEvents2[0]);
-    const startYear = 1940;
-    const endYear = 2025;
+    const startYear = 1900;
+    const endYear = 2000;
     const totalYears = endYear - startYear;
     const dynamicHeight = totalYears * 10.1 * zoomLevel;
 

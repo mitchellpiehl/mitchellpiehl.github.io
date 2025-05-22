@@ -43,25 +43,38 @@
             </div>
         </div>
         
-        <h1 class="center">1600-1900 Timeline</h1>
-        <div class="description">Explore the early roots and foundational ideas leading up to AI. This timeline spans several centuries of innovation.</div> 
+        <h1 class="center">Post-2000 Timeline</h1>
+        <div class="description">Explore the most modern advances and milestones of artificial intelligence.</div> 
         <ul>
             <li>
-                <a class="link-button" href="timeline3.html">View Post-2000 Timeline</a>
+                <a class="link-button2" href="timeline3.html">Currently Viewing Post-2000 Timeline</a>
                 <a class="link-button" href="timeline.html">View 1900-2000 Timeline</a>
-                <a class="link-button2" href="timeline2.html">Currently Viewing Pre-1900 Timeline</a>
+                <a class="link-button" href="timeline2.html">View Pre-1900 Timeline</a>
                 <a class="link-button" href="timeline4.html">View Ancient Timeline</a>
             </li>
         </ul>
+
+        <select id="categoryFilter">
+            <option value="all">All Events</option>
+            <option value="NeuralNets">Neural Networks</option>
+            <option value="SymbolicAI">Symbolic AI</option>
+            <option value="GenerativeAI">Generative AI</option>
+            <option value="NLP">Natural Language Processing</option>
+            <option value="ImageProcessing">Image Processing</option>
+            <option value="FoundationalIssues">Foundational Issues</option>
+            <option value="Milestones">Milestones</option>
+            <option value="TechnologicalAdvancements">Technological Advancements</option>
+            <option value="Hardware">Hardware</option>
+        </select>
+
         <div id="spinner" class="spinner" style="display: none;"></div>
-        
         <div class="timeline-container">
             <div class="eras" id="eras"></div>
             <div class="timeline" id="timeline"></div>
         </div>
 
         <script src="js/fetch.js"></script>
-        <script src="js/timeline2.js"></script>
+        <script src="js/timeline3.js"></script>
     </body>
     <div id="footer">
         <div class="fcol1">
