@@ -1,7 +1,7 @@
 :root {
     --backg: #510D77;
     --lightbackg: #921abd;
-    --bodyfont: 'Poppins', sans-serif;
+    --bodyfont: 'Poppins', Tahoma, sans-serif;
     --headtxtcolor: white;
 }
 @font-face {
