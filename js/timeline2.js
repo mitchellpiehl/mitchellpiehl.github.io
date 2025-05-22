@@ -91,10 +91,10 @@ function renderTimeline() {
     yearSortedEvents = [...filteredEvents].sort((a, b) => a.year - b.year);
     yearSortedEvents2 = [...filteredEvents].filter(event => event.year < 1950);
 
-    for (let year = 1400; year <= 1950; year += 50) {
+    for (let year = 1600; year <= 1950; year += 50) {
         const yearLabel = document.createElement('div');
         yearLabel.classList.add('year-label');
-        yearLabel.style.top = `${(year - 1400) * 10 * zoomLevel}px`;
+        yearLabel.style.top = `${(year - 1600) * 10 * zoomLevel}px`;
         yearLabel.innerText = year;
         timeline.appendChild(yearLabel);
     }
@@ -106,10 +106,10 @@ function renderTimeline() {
     filteredEvents.forEach(event => {
         const eventElement = document.createElement('div');
         eventElement.classList.add('event');
-        eventElement.style.top = `${(event.year - 1400) * 10 * zoomLevel}px`;
+        eventElement.style.top = `${(event.year - 1600) * 10 * zoomLevel}px`;
 
         let leftOffset = 20;
-        let eventTop = (event.year - 1400) * 10 * zoomLevel;
+        let eventTop = (event.year - 1600) * 10 * zoomLevel;
         let maxOffset = 500;
         let spacing = 70;
 
@@ -136,7 +136,7 @@ function renderTimeline() {
             
             timeline.appendChild(eventElement);
         }
-        const startYear = 1400;
+        const startYear = 1600;
         const endYear = 1950;
         const totalYears = endYear - startYear;
         const dynamicHeight = totalYears * 10.1 * zoomLevel;
@@ -149,7 +149,6 @@ function renderTimeline() {
         showModal(yearSortedEvents2[0]);
     }
     const eras = [
-        { name: "Renaissance", start: 1400, end: 1600, color: "#fde68a" },
         { name: "Enlightenment", start: 1600, end: 1800, color: "#bfdbfe" },
         { name: "Industrial Revolution", start: 1800, end: 1900, color: "#c7d2fe" },
         { name: "Age of Machines", start: 1900, end: 1950, color: "#fca5a5" }
@@ -158,7 +157,7 @@ function renderTimeline() {
     eras.forEach(era => {
         const eraElement = document.createElement('div');
         eraElement.classList.add('era');
-        eraElement.style.top = `${(era.start - 1400) * 10 * zoomLevel}px`;
+        eraElement.style.top = `${(era.start - 1600) * 10 * zoomLevel}px`;
         eraElement.style.height = `${(era.end - era.start) * 10 * zoomLevel}px`;
         eraElement.style.backgroundColor = era.color;
         eraElement.style.width = '80%';
