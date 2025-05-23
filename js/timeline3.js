@@ -11,13 +11,13 @@ const timeline = document.getElementById('timeline');
 const eraContainer = document.getElementById('eras');
 
 
-let zoomLevel = 3;
+let zoomLevel = 6;
 let zoomTarget = 1;
 let zoomStep = 0.1;
 let currentEventIndex = 0;
 let yearSortedEvents = [];
-const minZoom = 1;
-const maxZoom = 10;
+const minZoom = 3;
+const maxZoom = 12;
 
 const modal = document.createElement('div');
 modal.classList.add('modal');
@@ -149,14 +149,14 @@ function renderTimeline() {
         if (leftOffset < maxOffset || zoomLevel > 7) {
             occupiedPositions.push({ top: eventTop, left: leftOffset });
             eventElement.style.left = `${leftOffset}px`;
-            eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;
+            eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 7 ? event.long : event.short}`;
             
             eventElement.addEventListener('mouseover', () => {
                 eventElement.innerHTML = `<strong>${event.year}</strong><br>${event.long}`;
             });
             
             eventElement.addEventListener('mouseout', () => {
-                eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 5 ? event.long : event.short}`;
+                eventElement.innerHTML = `<strong>${event.year}</strong><br>${zoomLevel > 7 ? event.long : event.short}`;
             });
             
             eventElement.addEventListener('click', () => {

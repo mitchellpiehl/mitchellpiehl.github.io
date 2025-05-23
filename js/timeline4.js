@@ -7,14 +7,14 @@ async function initializePage() {
 const timeline = document.getElementById('timeline');
 const eraContainer = document.getElementById('eras');
 
-let zoomLevel = 0.5;
+let zoomLevel = 0.2;
 let zoomTarget = 1.5;
 let zoomStep = 0.1;
 let currentEventIndex = 0;
 let yearSortedEvents = [];
 let yearSortedEvents2 = [];
-const minZoom = 0.1;
-const maxZoom = 2;
+const minZoom = 0.05;
+const maxZoom = 1;
 
 const modal = document.createElement('div');
 modal.classList.add('modal');
@@ -89,7 +89,7 @@ function renderTimeline() {
 
     const filteredEvents = events.filter(event => event.year < 500);
 
-    for (let year = -400; year <= -300; year += 50) {
+    for (let year = -400; year <= 1600; year += 50) {
         const yearLabel = document.createElement('div');
         yearLabel.classList.add('year-label');
         yearLabel.style.top = `${(year + 400) * 10 * zoomLevel}px`;
@@ -135,7 +135,7 @@ function renderTimeline() {
             timeline.appendChild(eventElement);
         }
         const startYear = -400;
-        const endYear = -300;
+        const endYear = 1600;
         const totalYears = endYear - startYear;
         const dynamicHeight = totalYears * 10.1 * zoomLevel;
 
@@ -144,7 +144,7 @@ function renderTimeline() {
     });
 
     const eras = [
-        { name: "Ancient (BCE)", start: -400, end: -300, color: "#cccccc" }
+        { name: "Ancient (BCE)", start: -400, end: 0, color: "#cccccc" }
     ];
 
     eras.forEach(era => {
