@@ -43,12 +43,15 @@
             </div>
         </div>
         <h2 class="center">Foundational People Throughout the History of AI</h2>
-        <select id="categoryFilter">
-            <option value="all">All People</option>
+        <div class="filters">
+            <select id="categoryFilter">
+                <option value="all">All People</option>
             <option value="aiEngineers">AI Researchers</option>
             <option value="philosophers">Philosophers</option>
             <option value="mathematicians">Mathematicians</option>
-        </select>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search concepts..." />
+        </div>
         <div id="spinner" class="spinner" style="display: none;"></div>
         <div class="main-content">
             <div class="people-list">

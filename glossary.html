@@ -43,13 +43,16 @@
             </div>
         </div>
         <h2 class="center">Glossary of Important Foundational AI Concepts</h2>
-        <select id="categoryFilter">
-            <option value="all">All Concepts</option>
-            <option value="aiSystems">AI Systems</option>
-            <option value="logic">Logic/Mathematics</option>
-            <option value="hardware">Computer Development</option>
-            <option value="philosophy">Philosophy</option>
-        </select>
+        <div class="filters">
+            <select id="categoryFilter">
+                <option value="all">All Concepts</option>
+                <option value="aiSystems">AI Systems</option>
+                <option value="logic">Logic/Mathematics</option>
+                <option value="hardware">Computer Development</option>
+                <option value="philosophy">Philosophy</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="Search concepts..." />
+        </div>
         <div id="spinner" class="spinner" style="display: none;"></div>
         <div class="main-content">
             <div class="concepts-list"></div>

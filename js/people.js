@@ -8,6 +8,12 @@ document.getElementById("categoryFilter").addEventListener("change", function ()
     selectedCategory = this.value;
     renderContent();
 });
+let searchQuery = "";
+
+document.getElementById("searchInput").addEventListener("input", function () {
+    searchQuery = this.value.toLowerCase();
+    renderContent();
+});
 
 function renderContent() {
     const listContainer = document.querySelector(".people-list");
@@ -16,10 +22,16 @@ function renderContent() {
     detailContainer.innerHTML = "";
 
     let filteredPeople = people.filter(person => {
-        if (selectedCategory === 'aiEngineers') return person.aiEngineer;
-        if (selectedCategory === 'philosophers') return person.philosopher;
-        if (selectedCategory === 'mathematicians') return person.mathematician;
-        return true;
+        let personMatch =
+            selectedCategory === "all" ||
+            (selectedCategory === "aiEngineers" && person.aiEngineer) ||
+            (selectedCategory === "philosophers" && person.philosopher) ||
+            (selectedCategory === "mathematicians" && person.mathematician);
+        let searchMatch =
+            person.name.toLowerCase().includes(searchQuery) ||
+            person.long.toLowerCase().includes(searchQuery);
+    
+        return personMatch && searchMatch;
     });
 
     // Sort by birth year

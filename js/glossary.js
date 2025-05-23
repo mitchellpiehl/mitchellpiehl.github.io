@@ -9,6 +9,13 @@ document.getElementById("categoryFilter").addEventListener("change", function ()
     renderContent();
 });
 
+let searchQuery = "";
+
+document.getElementById("searchInput").addEventListener("input", function () {
+    searchQuery = this.value.toLowerCase();
+    renderContent();
+});
+
 function renderContent() {
     const listContainer = document.querySelector(".concepts-list");
     const detailContainer = document.querySelector(".concept-details");
@@ -16,11 +23,17 @@ function renderContent() {
     detailContainer.innerHTML = "";
 
     let filteredConcepts = concepts.filter(concept => {
-        if (selectedCategory === 'aiSystems') return concept.aiSystems;
-        if (selectedCategory === 'logic') return concept.logic;
-        if (selectedCategory === 'philosophy') return concept.philosophy;
-        if (selectedCategory === 'hardware') return concept.hardware;
-        return true;
+        let categoryMatch =
+            selectedCategory === "all" ||
+            (selectedCategory === "aiSystems" && concept.aiSystems) ||
+            (selectedCategory === "logic" && concept.logic) ||
+            (selectedCategory === "philosophy" && concept.philosophy) ||
+            (selectedCategory === "hardware" && concept.hardware);
+        let searchMatch =
+            concept.title.toLowerCase().includes(searchQuery) ||
+            concept.description.toLowerCase().includes(searchQuery);
+    
+        return categoryMatch && searchMatch;
     });
 
     function renderConceptDetail(concept) {
